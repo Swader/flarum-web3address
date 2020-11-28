@@ -59841,101 +59841,6 @@ module.exports = XXH64
 
 /***/ }),
 
-/***/ "./src/forum/components/Web3Button.js":
-/*!********************************************!*\
-  !*** ./src/forum/components/Web3Button.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Web3Button; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/Component */ "flarum/Component");
-/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @polkadot/extension-dapp */ "./node_modules/@polkadot/extension-dapp/index.js");
-/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-
-
-var Web3Button = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(Web3Button, _Component);
-
-  function Web3Button() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  var _proto = Web3Button.prototype;
-
-  _proto.view = function view() {
-    return m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
-      className: "Button",
-      onclick: this.handleClick.bind(this)
-    }, "Connect Web3");
-  };
-
-  _proto.handleClick = /*#__PURE__*/function () {
-    var _handleClick = Object(_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-      var accounts;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["web3Enable"])("Flarum Web3 Address Extension");
-
-            case 2:
-              if (!_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["isWeb3Injected"]) {
-                _context.next = 11;
-                break;
-              }
-
-              _context.next = 5;
-              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["web3Accounts"])();
-
-            case 5:
-              accounts = _context.sent;
-              console.log("Accounts from Button");
-              console.log(accounts);
-              this.attrs.accounts = accounts;
-              _context.next = 12;
-              break;
-
-            case 11:
-              window.location = "https://github.com/polkadot-js/extension";
-
-            case 12:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, this);
-    }));
-
-    function handleClick(_x) {
-      return _handleClick.apply(this, arguments);
-    }
-
-    return handleClick;
-  }();
-
-  return Web3Button;
-}(flarum_Component__WEBPACK_IMPORTED_MODULE_3___default.a);
-
-
-
-/***/ }),
-
 /***/ "./src/forum/components/Web3Dropdown.js":
 /*!**********************************************!*\
   !*** ./src/forum/components/Web3Dropdown.js ***!
@@ -59954,8 +59859,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Dropdown */ "flarum/components/Dropdown");
 /* harmony import */ var flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @polkadot/extension-dapp */ "./node_modules/@polkadot/extension-dapp/index.js");
-/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @polkadot/extension-dapp */ "./node_modules/@polkadot/extension-dapp/index.js");
+/* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -59972,12 +59880,27 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
 
   var _proto = Web3Dropdown.prototype;
 
+  _proto.oninit = function oninit() {
+    this.web3accounts = [];
+  };
+
   _proto.view = function view() {
+    var items = [];
+
+    if (this.web3accounts.length) {
+      for (var i = 0; i < this.web3accounts.length; i++) {
+        items.push(m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
+          value: this.web3accounts[i].address,
+          onclick: this.handleAccountSelect
+        }, this.web3accounts[i].address, this.web3accounts[i].meta.name ? " - " + this.web3accounts[i].meta.name : ""));
+      }
+    }
+
     return m(flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_4___default.a, {
       buttonClassName: "Button",
       onclick: this.handleClick.bind(this),
-      label: "Add Web3 Account"
-    }, this.items);
+      label: "Set Web3 Account"
+    }, items);
   };
 
   _proto.handleClick = /*#__PURE__*/function () {
@@ -59988,34 +59911,32 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["web3Enable"])("Flarum Web3 Address Extension");
+              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__["web3Enable"])("Flarum Web3 Address Extension");
 
             case 2:
-              if (!_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["isWeb3Injected"]) {
-                _context.next = 10;
+              if (!_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__["isWeb3Injected"]) {
+                _context.next = 9;
                 break;
               }
 
               _context.next = 5;
-              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_5__["web3Accounts"])();
+              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__["web3Accounts"])();
 
             case 5:
               accounts = _context.sent;
-              console.log("Accounts from Dropdown");
-              console.log(accounts); //this.items = accounts;
-
-              _context.next = 11;
+              this.web3accounts = accounts;
+              _context.next = 10;
               break;
 
-            case 10:
+            case 9:
               window.location = "https://github.com/polkadot-js/extension";
 
-            case 11:
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, this);
     }));
 
     function handleClick(_x) {
@@ -60024,6 +59945,10 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
 
     return handleClick;
   }();
+
+  _proto.handleAccountSelect = function handleAccountSelect() {
+    console.log(this.value);
+  };
 
   return Web3Dropdown;
 }(flarum_Component__WEBPACK_IMPORTED_MODULE_3___default.a);
@@ -60049,13 +59974,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_Model__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/models/User */ "flarum/models/User");
 /* harmony import */ var flarum_models_User__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_models_User__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Web3Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Web3Button */ "./src/forum/components/Web3Button.js");
-/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
-/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/components/EditUserModal */ "flarum/components/EditUserModal");
-/* harmony import */ var flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Web3Dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Web3Dropdown */ "./src/forum/components/Web3Dropdown.js");
-
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/EditUserModal */ "flarum/components/EditUserModal");
+/* harmony import */ var flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Web3Dropdown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Web3Dropdown */ "./src/forum/components/Web3Dropdown.js");
 
 
 
@@ -60065,10 +59988,10 @@ __webpack_require__.r(__webpack_exports__);
 
 app.initializers.add("swader/web3address", function () {
   flarum_models_User__WEBPACK_IMPORTED_MODULE_3___default.a.prototype.web3address = flarum_Model__WEBPACK_IMPORTED_MODULE_2___default.a.attribute("web3address");
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6___default.a.prototype, "oninit", function () {
-    this.web3address = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.attrs.user.web3address());
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, "oninit", function () {
+    this.web3address = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_4___default()(this.attrs.user.web3address());
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6___default.a.prototype, "fields", function (items) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, "fields", function (items) {
     items.add("web3address", m("div", {
       className: "Form-group"
     }, m("label", null, "Web3 Address"), m("input", {
@@ -60076,7 +59999,7 @@ app.initializers.add("swader/web3address", function () {
       bidi: this.web3address
     })), 1);
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_6___default.a.prototype, "data", function (data) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_EditUserModal__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, "data", function (data) {
     var user = this.attrs.user;
 
     if (this.web3address() !== user.web3address()) {
@@ -60087,13 +60010,7 @@ app.initializers.add("swader/web3address", function () {
     items.add("web3address", m("p", null, this.attrs.user.web3address()));
 
     if (app.session.user === this.attrs.user) {
-      var accounts = [];
-      items.add("web3address", _components_Web3Button__WEBPACK_IMPORTED_MODULE_4__["default"].component({
-        accounts: accounts
-      }));
-      items.add("web3dropdown", _components_Web3Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"].component({
-        accounts: accounts
-      }));
+      items.add("web3dropdown", _components_Web3Dropdown__WEBPACK_IMPORTED_MODULE_6__["default"].component());
     }
   });
 });

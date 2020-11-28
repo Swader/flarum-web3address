@@ -2,7 +2,6 @@ import { extend, override } from "flarum/extend";
 import UserCard from "flarum/components/UserCard";
 import Model from "flarum/Model";
 import User from "flarum/models/User";
-import Web3Button from "./components/Web3Button";
 import Stream from "flarum/utils/Stream";
 import EditUserModal from "flarum/components/EditUserModal";
 import Web3Dropdown from "./components/Web3Dropdown";
@@ -35,9 +34,7 @@ app.initializers.add("swader/web3address", () => {
   extend(UserCard.prototype, "infoItems", function (items) {
     items.add("web3address", <p>{this.attrs.user.web3address()}</p>);
     if (app.session.user === this.attrs.user) {
-      let accounts = [];
-      items.add("web3address", Web3Button.component({ accounts }));
-      items.add("web3dropdown", Web3Dropdown.component({ accounts }));
+      items.add("web3dropdown", Web3Dropdown.component());
     }
   });
 });
