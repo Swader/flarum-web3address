@@ -1,5 +1,5 @@
 import Component from "flarum/Component";
-import Button from "flarum/components/Button";
+import Dropdown from "flarum/components/Dropdown";
 
 import {
   web3Accounts,
@@ -7,12 +7,16 @@ import {
   isWeb3Injected,
 } from "@polkadot/extension-dapp";
 
-export default class Web3Button extends Component {
+export default class Web3Dropdown extends Component {
   view() {
     return (
-      <Button className="Button" onclick={this.handleClick.bind(this)}>
-        Connect Web3
-      </Button>
+      <Dropdown
+        buttonClassName="Button"
+        onclick={this.handleClick.bind(this)}
+        label="Add Web3 Account"
+      >
+        {this.items}
+      </Dropdown>
     );
   }
 
@@ -20,9 +24,9 @@ export default class Web3Button extends Component {
     await web3Enable("Flarum Web3 Address Extension");
     if (isWeb3Injected) {
       const accounts = await web3Accounts();
-      console.log("Accounts from Button");
+      console.log("Accounts from Dropdown");
       console.log(accounts);
-      this.attrs.accounts = accounts;
+      //this.items = accounts;
     } else {
       window.location = "https://github.com/polkadot-js/extension";
     }
