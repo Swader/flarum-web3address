@@ -48,6 +48,7 @@ export default class Web3Dropdown extends Component {
     if (isWeb3Injected) {
       const accounts = await web3Accounts();
       this.web3accounts = accounts;
+      m.redraw();
     } else {
       window.location = "https://github.com/polkadot-js/extension";
     }

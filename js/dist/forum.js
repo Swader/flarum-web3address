@@ -64856,7 +64856,7 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
 
             case 2:
               if (!_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__["isWeb3Injected"]) {
-                _context.next = 9;
+                _context.next = 10;
                 break;
               }
 
@@ -64866,13 +64866,14 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
             case 5:
               accounts = _context.sent;
               this.web3accounts = accounts;
-              _context.next = 10;
+              m.redraw();
+              _context.next = 11;
               break;
 
-            case 9:
+            case 10:
               window.location = "https://github.com/polkadot-js/extension";
 
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
