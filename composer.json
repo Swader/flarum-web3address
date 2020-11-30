@@ -29,7 +29,7 @@
     "flarum-extension": {
       "title": "Add Web3 Address",
       "icon": {
-        "name": "fas project-diagram",
+        "name": "fas fa-project-diagram",
         "backgroundColor": "#000000",
         "color": "#E6007A"
       }
