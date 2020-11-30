@@ -1,41 +1,41 @@
 {
-    "name": "swader/web3address",
-    "description": "Adds ability for users to add their Web3 address into their profile if they have the Polkadot JS extension installed.",
-    "keywords": [
-        "flarum",
-        "web3",
-        "blockchain",
-        "substrate",
-        "polkadot"
-    ],
-    "type": "flarum-extension",
-    "license": "MIT",
-    "require": {
-        "flarum/core": "^0.1.0-beta.14"
-    },
-    "authors": [
-        {
-            "name": "Bruno Škvorc",
-            "email": "swader@hey.com",
-            "role": "Developer"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Swader\\Web3Address\\": "src/"
-        }
-    },
-    "extra": {
-        "flarum-extension": {
-            "title": "Add Web3 Address",
-            "icon": {
-                "name": "",
-                "backgroundColor": "",
-                "color": ""
-            }
-        },
-        "flagrow": {
-            "discuss": ""
-        }
+  "name": "swader/web3address",
+  "description": "Adds ability for users to add their Web3 address into their profile if they have the Polkadot JS extension installed.",
+  "keywords": [
+    "flarum",
+    "web3",
+    "blockchain",
+    "substrate",
+    "polkadot"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^0.1.0-beta.14"
+  },
+  "authors": [
+    {
+      "name": "Bruno Škvorc",
+      "email": "swader@hey.com",
+      "role": "Developer"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Swader\\Web3Address\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Add Web3 Address",
+      "icon": {
+        "name": "fas project-diagram",
+        "backgroundColor": "#000000",
+        "color": "#E6007A"
+      }
+    },
+    "flagrow": {
+      "discuss": ""
+    }
+  }
 }
