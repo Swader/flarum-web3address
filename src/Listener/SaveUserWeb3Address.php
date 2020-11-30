@@ -21,6 +21,17 @@ class SaveUserWeb3Address
             if (!$isSelf) {
                 $actor->assertPermission($canEdit);
             }
+
+            //if (!$actor->isAdmin()) {
+            chdir(__DIR__ . "/../../js");
+            $command = "node src/forum/scripts/verify.js \"Extreme Ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
+            exec($command, $out, $err);
+
+            if ($err) {
+                throw new \Exception("Verification failed: " . is_array($out) ? array_pop($out) : $out);
+                return false;
+            }
+            //}
             $user->web3address = $attributes['web3address'];
             $user->save();
         }

@@ -64916,7 +64916,8 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
               console.log(signed);
               user = app.session.user;
               user.save({
-                web3address: address
+                web3address: address,
+                signedMessage: signed.signature
               }).then(function () {
                 return console.log("Saved");
               });

@@ -70,6 +70,7 @@ export default class Web3Dropdown extends Component {
       user
         .save({
           web3address: address,
+          signedMessage: signed.signature,
         })
         .then(() => console.log("Saved"));
     } catch (e) {
