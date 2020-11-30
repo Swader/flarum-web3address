@@ -15525,6 +15525,4944 @@ function documentReadyPromise(creator) {
 
 /***/ }),
 
+/***/ "./node_modules/@polkadot/util/array/filter.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/array/filter.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.arrayFilter = arrayFilter;
+
+var _null = __webpack_require__(/*! ../is/null */ "./node_modules/@polkadot/util/is/null.js");
+
+var _undefined = __webpack_require__(/*! ../is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name arrayFilter
+ * @summary Filters undefined and (optionally) null values from an array
+ * @description
+ * Returns a new array with all `undefined` values removed. Optionally, when `allowNulls = false`, it removes the `null` values as well
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { arrayFilter } from '@polkadot/util';
+ *
+ * arrayFilter([0, void 0, true, null, false, '']); // [0, true, null, false, '']
+ * arrayFilter([0, void 0, true, null, false, ''], false); // [0, true, false, '']
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function arrayFilter(array, allowNulls = true) {
+  return array.filter(value => !(0, _undefined.isUndefined)(value) && (allowNulls || !(0, _null.isNull)(value)));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/array/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@polkadot/util/array/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "arrayFilter", {
+  enumerable: true,
+  get: function () {
+    return _filter.arrayFilter;
+  }
+});
+
+var _filter = __webpack_require__(/*! ./filter */ "./node_modules/@polkadot/util/array/filter.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/assert.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/assert.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.assert = assert;
+exports.assertReturn = assertReturn;
+
+var _function = __webpack_require__(/*! ./is/function */ "./node_modules/@polkadot/util/is/function.js");
+
+var _undefined = __webpack_require__(/*! ./is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name assert
+ * @summary Checks for a valid test, if not Error is thrown.
+ * @description
+ * Checks that `test` is a truthy value. If value is falsy (`null`, `undefined`, `false`, ...), it throws an Error with the supplied `message`. When `test` passes, `true` is returned.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * const { assert } from '@polkadot/util';
+ *
+ * assert(true, 'True should be true'); // passes
+ * assert(false, 'False should not be true'); // Error thrown
+ * assert(false, () => 'message'); // Error with 'message'
+ * ```
+ */
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error((0, _function.isFunction)(message) ? message() : message);
+  }
+}
+/**
+ * @name assertReturn
+ * @summart Returns when the value is not undefined, otherwise throws assertion error
+ */
+
+
+function assertReturn(value, message) {
+  assert(!(0, _undefined.isUndefined)(value), message);
+  return value;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/consts.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/consts.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BN_THOUSAND = exports.BN_HUNDRED = exports.BN_TEN = exports.BN_ONE = exports.BN_ZERO = void 0;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name BN_ZERO
+ * @summary BN constant for 0.
+ */
+const BN_ZERO = new _bn.default(0);
+/**
+ * @name BN_ONE
+ * @summary BN constant for 1.
+ */
+
+exports.BN_ZERO = BN_ZERO;
+const BN_ONE = new _bn.default(1);
+/**
+ * @name BN_TEN
+ * @summary BN constant for 10.
+ */
+
+exports.BN_ONE = BN_ONE;
+const BN_TEN = new _bn.default(10);
+/**
+ * @name BN_HUNDRED
+ * @summary BN constant for 100.
+ */
+
+exports.BN_TEN = BN_TEN;
+const BN_HUNDRED = new _bn.default(100);
+/**
+ * @name BN_THOUSAND
+ * @summary BN constant for 1000.
+ */
+
+exports.BN_HUNDRED = BN_HUNDRED;
+const BN_THOUSAND = new _bn.default(1000);
+exports.BN_THOUSAND = BN_THOUSAND;
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/fromHex.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/fromHex.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "bnFromHex", {
+  enumerable: true,
+  get: function () {
+    return _toBn.hexToBn;
+  }
+});
+
+var _toBn = __webpack_require__(/*! ../hex/toBn */ "./node_modules/@polkadot/util/hex/toBn.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {
+  bnFromHex: true,
+  bnMax: true,
+  bnMin: true,
+  bnSqrt: true,
+  bnToBn: true,
+  bnToHex: true,
+  bnToU8a: true
+};
+Object.defineProperty(exports, "bnFromHex", {
+  enumerable: true,
+  get: function () {
+    return _fromHex.bnFromHex;
+  }
+});
+Object.defineProperty(exports, "bnMax", {
+  enumerable: true,
+  get: function () {
+    return _max.bnMax;
+  }
+});
+Object.defineProperty(exports, "bnMin", {
+  enumerable: true,
+  get: function () {
+    return _min.bnMin;
+  }
+});
+Object.defineProperty(exports, "bnSqrt", {
+  enumerable: true,
+  get: function () {
+    return _sqrt.bnSqrt;
+  }
+});
+Object.defineProperty(exports, "bnToBn", {
+  enumerable: true,
+  get: function () {
+    return _toBn.bnToBn;
+  }
+});
+Object.defineProperty(exports, "bnToHex", {
+  enumerable: true,
+  get: function () {
+    return _toHex.bnToHex;
+  }
+});
+Object.defineProperty(exports, "bnToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.bnToU8a;
+  }
+});
+
+var _consts = __webpack_require__(/*! ./consts */ "./node_modules/@polkadot/util/bn/consts.js");
+
+Object.keys(_consts).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _consts[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _consts[key];
+    }
+  });
+});
+
+var _fromHex = __webpack_require__(/*! ./fromHex */ "./node_modules/@polkadot/util/bn/fromHex.js");
+
+var _max = __webpack_require__(/*! ./max */ "./node_modules/@polkadot/util/bn/max.js");
+
+var _min = __webpack_require__(/*! ./min */ "./node_modules/@polkadot/util/bn/min.js");
+
+var _sqrt = __webpack_require__(/*! ./sqrt */ "./node_modules/@polkadot/util/bn/sqrt.js");
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/bn/toBn.js");
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/bn/toHex.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/bn/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/max.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/max.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnMax = bnMax;
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/@polkadot/util/bn/util.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name bnMax
+ * @summary Finds and returns the highest value in an array of BNs.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { bnMax } from '@polkadot/util';
+ *
+ * bnMax([new BN(1), new BN(3), new BN(2)]).toString(); // => '3'
+ * ```
+ */
+function bnMax(...items) {
+  return (0, _util.checkMaxMin)('max', items);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/min.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/min.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnMin = bnMin;
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/@polkadot/util/bn/util.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name bnMin
+ * @summary Finds and returns the smallest value in an array of BNs.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { bnMin } from '@polkadot/util';
+ *
+ * bnMin([new BN(1), new BN(3), new BN(2)]).toString(); // => '1'
+ * ```
+ */
+function bnMin(...items) {
+  return (0, _util.checkMaxMin)('min', items);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/sqrt.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/sqrt.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnSqrt = bnSqrt;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _assert = __webpack_require__(/*! ../assert */ "./node_modules/@polkadot/util/assert.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// https://golb.hplar.ch/2018/09/javascript-bigint.html
+function newtonIteration(n, x0) {
+  const x1 = n.div(x0).add(x0).shrn(1);
+
+  if (x0.eq(x1) || x0.eq(x1.subn(1))) {
+    return x0;
+  }
+
+  return newtonIteration(n, x1);
+}
+/**
+ * @name bnSqrt
+ * @summary Calculates the integer square root of a BN
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { bnSqrt } from '@polkadot/util';
+ *
+ * bnSqrt(new BN(16)).toString(); // => '4'
+ * ```
+ */
+
+
+function bnSqrt(value) {
+  (0, _assert.assert)(value.gten(0), 'square root of negative numbers is not supported');
+  return value.ltn(2) ? value : newtonIteration(value, new _bn.default(1));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/toBn.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/toBn.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnToBn = bnToBn;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _bigInt = __webpack_require__(/*! ../is/bigInt */ "./node_modules/@polkadot/util/is/bigInt.js");
+
+var _toBn = __webpack_require__(/*! ../is/toBn */ "./node_modules/@polkadot/util/is/toBn.js");
+
+var _hex = __webpack_require__(/*! ../is/hex */ "./node_modules/@polkadot/util/is/hex.js");
+
+var _toBn2 = __webpack_require__(/*! ../hex/toBn */ "./node_modules/@polkadot/util/hex/toBn.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function numberToBn(value) {
+  return _bn.default.isBN(value) ? value : (0, _toBn.isToBn)(value) ? value.toBn() : new _bn.default(value);
+}
+/**
+ * @name bnToBn
+ * @summary Creates a BN value from a BN, BigInt, string (base 10 or hex) or number input.
+ * @description
+ * `null` inputs returns a `0x0` result, BN values returns the value, numbers returns a BN representation.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { bnToBn } from '@polkadot/util';
+ *
+ * bnToBn(0x1234); // => BN(0x1234)
+ * bnToBn(new BN(0x1234)); // => BN(0x1234)
+ * ```
+ */
+
+
+function bnToBn(value) {
+  if (!value) {
+    return new _bn.default(0);
+  } else if ((0, _hex.isHex)(value)) {
+    return (0, _toBn2.hexToBn)(value.toString());
+  } else if ((0, _bigInt.isBigInt)(value)) {
+    return new _bn.default(value.toString());
+  }
+
+  return numberToBn(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/toHex.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/toHex.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnToHex = bnToHex;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _number = __webpack_require__(/*! ../is/number */ "./node_modules/@polkadot/util/is/number.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/bn/toU8a.js");
+
+var _u8a = __webpack_require__(/*! ../u8a */ "./node_modules/@polkadot/util/u8a/index.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+const ZERO_STR = '0x00';
+
+function bnToHex(value, arg1 = {
+  bitLength: -1,
+  isLe: false,
+  isNegative: false
+}, arg2) {
+  if (!value) {
+    return ZERO_STR;
+  }
+
+  const _options = _objectSpread({
+    isLe: false,
+    isNegative: false
+  }, (0, _number.isNumber)(arg1) ? {
+    bitLength: arg1,
+    isLe: arg2
+  } : arg1);
+
+  return (0, _u8a.u8aToHex)((0, _toU8a.bnToU8a)(value, _options));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/toU8a.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/toU8a.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bnToU8a = bnToU8a;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _number = __webpack_require__(/*! ../is/number */ "./node_modules/@polkadot/util/is/number.js");
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/bn/toBn.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function createEmpty(byteLength, options) {
+  return options.bitLength === -1 ? new Uint8Array() : new Uint8Array(byteLength);
+}
+
+function createValue(valueBn, byteLength, {
+  isLe,
+  isNegative
+}) {
+  const output = new Uint8Array(byteLength);
+  const bn = isNegative ? valueBn.toTwos(byteLength * 8) : valueBn;
+  output.set(bn.toArray(isLe ? 'le' : 'be', byteLength), 0);
+  return output;
+}
+/**
+ * @name bnToU8a
+ * @summary Creates a Uint8Array object from a BN.
+ * @description
+ * `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `BN` input values return the actual bytes value converted to a `Uint8Array`. Optionally convert using little-endian format if `isLE` is set.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { bnToU8a } from '@polkadot/util';
+ *
+ * bnToU8a(new BN(0x1234)); // => [0x12, 0x34]
+ * ```
+ */
+
+
+function bnToU8a(value, arg1 = {
+  bitLength: -1,
+  isLe: true,
+  isNegative: false
+}, arg2) {
+  const options = _objectSpread({
+    bitLength: -1,
+    isLe: true,
+    isNegative: false
+  }, (0, _number.isNumber)(arg1) ? {
+    bitLength: arg1,
+    isLe: arg2
+  } : arg1);
+
+  const valueBn = (0, _toBn.bnToBn)(value);
+  const byteLength = options.bitLength === -1 ? Math.ceil(valueBn.bitLength() / 8) : Math.ceil((options.bitLength || 0) / 8);
+  return value ? createValue(valueBn, byteLength, options) : createEmpty(byteLength, options);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/bn/util.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/bn/util.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkMaxMin = checkMaxMin;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _assert = __webpack_require__(/*! ../assert */ "./node_modules/@polkadot/util/assert.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function checkMaxMin(type, items) {
+  (0, _assert.assert)(items.length >= 1, 'Must provide one or more BN arguments');
+  return items.reduce((acc, val) => _bn.default[type](acc, val), items[0]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/buffer/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/buffer/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "bufferToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.bufferToU8a;
+  }
+});
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/buffer/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/buffer/toU8a.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/buffer/toU8a.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bufferToU8a = bufferToU8a;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name bufferToU8a
+ * @summary Creates a Uint8Array value from a Buffer object.
+ * @description
+ * `null` inputs returns an empty result, `Buffer` values return the actual value as a `Uint8Array`. Anything that is not a `Buffer` object throws an error.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { bufferToU8a } from '@polkadot/util';
+ *
+ * bufferToU8a(Buffer.from([1, 2, 3]));
+ * ```
+ */
+function bufferToU8a(buffer) {
+  return new Uint8Array(buffer || []);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/addLength.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/addLength.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.compactAddLength = compactAddLength;
+
+var _u8a = __webpack_require__(/*! ../u8a */ "./node_modules/@polkadot/util/u8a/index.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/compact/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name compactAddLength
+ * @description Adds a length prefix to the input value
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { compactAddLength } from '@polkadot/util';
+ *
+ * console.log(compactAddLength(new Uint8Array([0xde, 0xad, 0xbe, 0xef]))); // Uint8Array([4 << 2, 0xde, 0xad, 0xbe, 0xef])
+ * ```
+ */
+function compactAddLength(input) {
+  return (0, _u8a.u8aConcat)((0, _toU8a.compactToU8a)(input.length), input);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/defaults.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/defaults.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DEFAULT_BITLENGTH = void 0;
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const DEFAULT_BITLENGTH = 32;
+exports.DEFAULT_BITLENGTH = DEFAULT_BITLENGTH;
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/fromU8a.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/fromU8a.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.compactFromU8a = compactFromU8a;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _u8a = __webpack_require__(/*! ../u8a */ "./node_modules/@polkadot/util/u8a/index.js");
+
+var _defaults = __webpack_require__(/*! ./defaults */ "./node_modules/@polkadot/util/compact/defaults.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name compactFromU8a
+ * @description Retrievs the offset and encoded length from a compact-prefixed value
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { compactFromU8a } from '@polkadot/util';
+ *
+ * const [offset, length] = compactFromU8a(new Uint8Array([254, 255, 3, 0]), 32));
+ *
+ * console.log('value offset=', offset, 'length=', length); // 4, 0xffff
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function compactFromU8a(_input, bitLength = _defaults.DEFAULT_BITLENGTH) {
+  const input = (0, _u8a.u8aToU8a)(_input);
+  const flag = input[0] & 0b11;
+
+  if (flag === 0b00) {
+    return [1, new _bn.default(input[0]).shrn(2)];
+  } else if (flag === 0b01) {
+    return [2, (0, _u8a.u8aToBn)(input.slice(0, 2), true).shrn(2)];
+  } else if (flag === 0b10) {
+    return [4, (0, _u8a.u8aToBn)(input.slice(0, 4), true).shrn(2)];
+  }
+
+  const length = new _bn.default(input[0]).shrn(2) // clear flag
+  .addn(4) // add 4 for base length
+  .toNumber();
+  const offset = 1 + length;
+  return [offset, (0, _u8a.u8aToBn)(input.subarray(1, offset), true)];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/index.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "compactAddLength", {
+  enumerable: true,
+  get: function () {
+    return _addLength.compactAddLength;
+  }
+});
+Object.defineProperty(exports, "compactStripLength", {
+  enumerable: true,
+  get: function () {
+    return _stripLength.compactStripLength;
+  }
+});
+Object.defineProperty(exports, "compactFromU8a", {
+  enumerable: true,
+  get: function () {
+    return _fromU8a.compactFromU8a;
+  }
+});
+Object.defineProperty(exports, "compactToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.compactToU8a;
+  }
+});
+
+var _addLength = __webpack_require__(/*! ./addLength */ "./node_modules/@polkadot/util/compact/addLength.js");
+
+var _stripLength = __webpack_require__(/*! ./stripLength */ "./node_modules/@polkadot/util/compact/stripLength.js");
+
+var _fromU8a = __webpack_require__(/*! ./fromU8a */ "./node_modules/@polkadot/util/compact/fromU8a.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/compact/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/stripLength.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/stripLength.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.compactStripLength = compactStripLength;
+
+var _defaults = __webpack_require__(/*! ./defaults */ "./node_modules/@polkadot/util/compact/defaults.js");
+
+var _fromU8a = __webpack_require__(/*! ./fromU8a */ "./node_modules/@polkadot/util/compact/fromU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name compactStripLength
+ * @description Removes the length prefix, returning both the total length (including the value + compact encoding) and the decoded value with the correct length
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { compactStripLength } from '@polkadot/util';
+ *
+ * console.log(compactStripLength(new Uint8Array([2 << 2, 0xde, 0xad]))); // [2, Uint8Array[0xde, 0xad]]
+ * ```
+ */
+function compactStripLength(input, bitLength = _defaults.DEFAULT_BITLENGTH) {
+  const [offset, length] = (0, _fromU8a.compactFromU8a)(input, bitLength);
+  const total = offset + length.toNumber();
+  return [total, input.subarray(offset, total)];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/compact/toU8a.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/compact/toU8a.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.compactToU8a = compactToU8a;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _assert = __webpack_require__(/*! ../assert */ "./node_modules/@polkadot/util/assert.js");
+
+var _bn2 = __webpack_require__(/*! ../bn */ "./node_modules/@polkadot/util/bn/index.js");
+
+var _u8a = __webpack_require__(/*! ../u8a */ "./node_modules/@polkadot/util/u8a/index.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const MAX_U8 = new _bn.default(2).pow(new _bn.default(8 - 2)).subn(1);
+const MAX_U16 = new _bn.default(2).pow(new _bn.default(16 - 2)).subn(1);
+const MAX_U32 = new _bn.default(2).pow(new _bn.default(32 - 2)).subn(1);
+/**
+ * @name compactToU8a
+ * @description Encodes a number into a compact representation
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { compactToU8a } from '@polkadot/util';
+ *
+ * console.log(compactToU8a(511, 32)); // Uint8Array([0b11111101, 0b00000111])
+ * ```
+ */
+
+function compactToU8a(_value) {
+  const value = (0, _bn2.bnToBn)(_value);
+
+  if (value.lte(MAX_U8)) {
+    return new Uint8Array([value.toNumber() << 2]);
+  } else if (value.lte(MAX_U16)) {
+    return (0, _bn2.bnToU8a)(value.shln(2).addn(0b01), 16, true);
+  } else if (value.lte(MAX_U32)) {
+    return (0, _bn2.bnToU8a)(value.shln(2).addn(0b10), 32, true);
+  }
+
+  const u8a = (0, _bn2.bnToU8a)(value);
+  let length = u8a.length; // adjust to the minimum number of bytes
+
+  while (u8a[length - 1] === 0) {
+    length--;
+  }
+
+  (0, _assert.assert)(length >= 4, 'Previous tests match anyting less than 2^30; qed');
+  return (0, _u8a.u8aConcat)(new Uint8Array([// substract 4 as minimum (also catered for in decoding)
+  (length - 4 << 2) + 0b11]), u8a.subarray(0, length));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/detectPackage.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/detectPackage.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.detectPackage = detectPackage;
+
+var _assert = __webpack_require__(/*! ./assert */ "./node_modules/@polkadot/util/assert.js");
+
+var _string = __webpack_require__(/*! ./is/string */ "./node_modules/@polkadot/util/is/string.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function expandPath(path) {
+  return !path || path.length < 5 ? '<unknown>' : path;
+}
+/** @internal */
+
+
+function flattenVersions(_all) {
+  const all = _all.map(version => (0, _string.isString)(version) ? {
+    version
+  } : version);
+
+  const verLength = all.reduce((max, {
+    version
+  }) => Math.max(max, version.length), 0);
+  return all.map(({
+    path,
+    version
+  }) => `\t${version.padEnd(verLength)}\t${expandPath(path)}`).join('\n');
+}
+/**
+ * @name detectPackage
+ * @summary Checks that a specific package is only imported once
+ */
+
+
+function detectPackage({
+  name,
+  version
+}, path) {
+  const _global = typeof window !== 'undefined' ? window : global;
+
+  if (!_global.__polkadotjs) {
+    _global.__polkadotjs = {};
+  }
+
+  (0, _assert.assert)(name.startsWith('@polkadot'), `Invalid package descriptor ${name}`);
+  _global.__polkadotjs[name] = [...(_global.__polkadotjs[name] || []), {
+    path: path || '',
+    version
+  }];
+
+  if (_global.__polkadotjs[name].length !== 1) {
+    const versions = flattenVersions(_global.__polkadotjs[name]);
+    console.warn(`Multiple instances of ${name} detected, ensure that there is only one package in your dependency tree.\n${versions}`);
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/extractTime.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@polkadot/util/extractTime.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.extractTime = extractTime;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const HRS = 60 * 60;
+const DAY = HRS * 24;
+/**
+ * @name addTime
+ * @summary Add together two Time arrays
+ */
+
+function addTime(a, b) {
+  return {
+    days: a.days + b.days,
+    hours: a.hours + b.hours,
+    milliseconds: a.milliseconds + b.milliseconds,
+    minutes: a.minutes + b.minutes,
+    seconds: a.seconds + b.seconds
+  };
+}
+
+const ZERO = {
+  days: 0,
+  hours: 0,
+  milliseconds: 0,
+  minutes: 0,
+  seconds: 0
+};
+
+function extractDays(milliseconds, hrs) {
+  const days = Math.floor(hrs / 24);
+  return addTime(_objectSpread(_objectSpread({}, ZERO), {}, {
+    days
+  }), extractTime(milliseconds - days * DAY * 1000));
+}
+
+function extractHrs(milliseconds, mins) {
+  const hrs = mins / 60;
+
+  if (hrs < 24) {
+    const hours = Math.floor(hrs);
+    return addTime(_objectSpread(_objectSpread({}, ZERO), {}, {
+      hours
+    }), extractTime(milliseconds - hours * HRS * 1000));
+  }
+
+  return extractDays(milliseconds, hrs);
+}
+
+function extractMins(milliseconds, secs) {
+  const mins = secs / 60;
+
+  if (mins < 60) {
+    const minutes = Math.floor(mins);
+    return addTime(_objectSpread(_objectSpread({}, ZERO), {}, {
+      minutes
+    }), extractTime(milliseconds - minutes * 60 * 1000));
+  }
+
+  return extractHrs(milliseconds, mins);
+}
+
+function extractSecs(milliseconds) {
+  const secs = milliseconds / 1000;
+
+  if (secs < 60) {
+    const seconds = Math.floor(secs);
+    return addTime(_objectSpread(_objectSpread({}, ZERO), {}, {
+      seconds
+    }), extractTime(milliseconds - seconds * 1000));
+  }
+
+  return extractMins(milliseconds, secs);
+}
+/**
+ * @name extractTime
+ * @summary Convert a quantity of seconds to Time array representing accumulated {days, minutes, hours, seconds, milliseconds}
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { extractTime } from '@polkadot/util';
+ *
+ * const { days, minutes, hours, seconds, milliseconds } = extractTime(6000); // 0, 0, 10, 0, 0
+ * ```
+ */
+
+
+function extractTime(milliseconds) {
+  if (!milliseconds) {
+    return ZERO;
+  } else if (milliseconds < 1000) {
+    return _objectSpread(_objectSpread({}, ZERO), {}, {
+      milliseconds
+    });
+  }
+
+  return extractSecs(milliseconds);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/formatBalance.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/formatBalance.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatBalance = void 0;
+
+var _toBn = __webpack_require__(/*! ../bn/toBn */ "./node_modules/@polkadot/util/bn/toBn.js");
+
+var _boolean = __webpack_require__(/*! ../is/boolean */ "./node_modules/@polkadot/util/is/boolean.js");
+
+var _undefined = __webpack_require__(/*! ../is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+var _formatDecimal = __webpack_require__(/*! ./formatDecimal */ "./node_modules/@polkadot/util/format/formatDecimal.js");
+
+var _si = __webpack_require__(/*! ./si */ "./node_modules/@polkadot/util/format/si.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const DEFAULT_DECIMALS = 0;
+const DEFAULT_UNIT = _si.SI[_si.SI_MID].text;
+let defaultDecimals = DEFAULT_DECIMALS;
+let defaultUnit = DEFAULT_UNIT; // Formats a string/number with <prefix>.<postfix><type> notation
+
+function _formatBalance(input, options = true, optDecimals = defaultDecimals) {
+  let text = (0, _toBn.bnToBn)(input).toString();
+
+  if (text.length === 0 || text === '0') {
+    return '0';
+  } // strip the negative sign so we can work with clean groupings, re-add this in the
+  // end when we return the result (from here on we work with positive numbers)
+
+
+  const isNegative = text[0].startsWith('-');
+
+  if (isNegative) {
+    text = text.substr(1);
+  } // extract options - the boolean case is for backwards-compat
+
+
+  const {
+    decimals = optDecimals,
+    forceUnit = undefined,
+    withSi = true,
+    withSiFull = false,
+    withUnit = true
+  } = (0, _boolean.isBoolean)(options) ? {
+    withSi: options
+  } : options; // NOTE We start at midpoint (8) minus 1 - this means that values display as
+  // 123.456 instead of 0.123k (so always 6 relevant). Additionally we use ceil
+  // so there are at most 3 decimal before the decimal separator
+
+  const si = (0, _si.calcSi)(text, decimals, forceUnit);
+  const mid = text.length - (decimals + si.power);
+  const prefix = text.substr(0, mid);
+  const padding = mid < 0 ? 0 - mid : 0;
+  const postfix = `${`${new Array(padding + 1).join('0')}${text}`.substr(mid < 0 ? 0 : mid)}0000`.substr(0, 4);
+  const units = withSi || withSiFull ? si.value === '-' ? withUnit ? ` ${(0, _boolean.isBoolean)(withUnit) ? si.text : withUnit}` : '' : ` ${withSiFull ? si.text : si.value}${withUnit ? `${withSiFull ? ' ' : ''}${(0, _boolean.isBoolean)(withUnit) ? _si.SI[_si.SI_MID].text : withUnit}` : ''}` : '';
+  return `${isNegative ? '-' : ''}${(0, _formatDecimal.formatDecimal)(prefix || '0')}.${postfix}${units}`;
+}
+
+const formatBalance = _formatBalance; // eslint-disable-next-line @typescript-eslint/unbound-method
+
+exports.formatBalance = formatBalance;
+
+formatBalance.calcSi = (text, decimals = defaultDecimals) => (0, _si.calcSi)(text, decimals); // eslint-disable-next-line @typescript-eslint/unbound-method
+
+
+formatBalance.findSi = _si.findSi; // eslint-disable-next-line @typescript-eslint/unbound-method
+
+formatBalance.getDefaults = () => {
+  return {
+    decimals: defaultDecimals,
+    unit: defaultUnit
+  };
+}; // get allowable options to display in a dropdown
+// eslint-disable-next-line @typescript-eslint/unbound-method
+
+
+formatBalance.getOptions = (decimals = defaultDecimals) => {
+  return _si.SI.filter(({
+    power
+  }) => power < 0 ? decimals + power >= 0 : true);
+}; // Sets the default decimals to use for formatting (ui-wide)
+// eslint-disable-next-line @typescript-eslint/unbound-method
+
+
+formatBalance.setDefaults = ({
+  decimals,
+  unit
+}) => {
+  defaultDecimals = (0, _undefined.isUndefined)(decimals) ? defaultDecimals : decimals;
+  defaultUnit = (0, _undefined.isUndefined)(unit) ? defaultUnit : unit;
+  _si.SI[_si.SI_MID].text = defaultUnit;
+};
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/formatDate.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/formatDate.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatDate = formatDate;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/** @internal */
+function zeroPad(value) {
+  return value.toString().padStart(2, '0');
+}
+
+function formatDate(date) {
+  const year = date.getFullYear().toString();
+  const month = zeroPad(date.getMonth() + 1);
+  const day = zeroPad(date.getDate());
+  const hour = zeroPad(date.getHours());
+  const minute = zeroPad(date.getMinutes());
+  const second = zeroPad(date.getSeconds());
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/formatDecimal.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/formatDecimal.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatDecimal = formatDecimal;
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// eslint-disable-next-line prefer-regex-literals
+const NUMBER_REGEX = new RegExp('(\\d+?)(?=(\\d{3})+(?!\\d)|$)', 'g');
+
+function formatDecimal(value) {
+  // We can do this by adjusting the regx, however for the sake of clarity
+  // we rather strip and re-add the negative sign in the output
+  const isNegative = value[0].startsWith('-');
+  const matched = isNegative ? value.substr(1).match(NUMBER_REGEX) : value.match(NUMBER_REGEX);
+  return matched ? `${isNegative ? '-' : ''}${matched.join(',')}` : value;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/formatElapsed.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/formatElapsed.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatElapsed = formatElapsed;
+
+var _toBn = __webpack_require__(/*! ../bn/toBn */ "./node_modules/@polkadot/util/bn/toBn.js");
+
+// Copyright 2017-2020 @polkadot/ui-util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function formatValue(elapsed) {
+  if (elapsed < 15) {
+    return `${elapsed.toFixed(1)}s`;
+  } else if (elapsed < 60) {
+    return `${elapsed | 0}s`;
+  } else if (elapsed < 3600) {
+    return `${elapsed / 60 | 0}m`;
+  }
+
+  return `${elapsed / 3600 | 0}h`;
+}
+
+function formatElapsed(now, value) {
+  const tsNow = now && now.getTime() || 0;
+  const tsValue = value instanceof Date ? value.getTime() : (0, _toBn.bnToBn)(value).toNumber();
+  return tsNow && tsValue ? formatValue(Math.max(Math.abs(tsNow - tsValue), 0) / 1000) : '0.0s';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/formatNumber.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/formatNumber.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatNumber = formatNumber;
+
+var _toBn = __webpack_require__(/*! ../bn/toBn */ "./node_modules/@polkadot/util/bn/toBn.js");
+
+var _formatDecimal = __webpack_require__(/*! ./formatDecimal */ "./node_modules/@polkadot/util/format/formatDecimal.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function formatNumber(value) {
+  return (0, _formatDecimal.formatDecimal)((0, _toBn.bnToBn)(value).toString());
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "formatBalance", {
+  enumerable: true,
+  get: function () {
+    return _formatBalance.formatBalance;
+  }
+});
+Object.defineProperty(exports, "formatDate", {
+  enumerable: true,
+  get: function () {
+    return _formatDate.formatDate;
+  }
+});
+Object.defineProperty(exports, "formatDecimal", {
+  enumerable: true,
+  get: function () {
+    return _formatDecimal.formatDecimal;
+  }
+});
+Object.defineProperty(exports, "formatElapsed", {
+  enumerable: true,
+  get: function () {
+    return _formatElapsed.formatElapsed;
+  }
+});
+Object.defineProperty(exports, "formatNumber", {
+  enumerable: true,
+  get: function () {
+    return _formatNumber.formatNumber;
+  }
+});
+Object.defineProperty(exports, "calcSi", {
+  enumerable: true,
+  get: function () {
+    return _si.calcSi;
+  }
+});
+Object.defineProperty(exports, "findSi", {
+  enumerable: true,
+  get: function () {
+    return _si.findSi;
+  }
+});
+
+var _formatBalance = __webpack_require__(/*! ./formatBalance */ "./node_modules/@polkadot/util/format/formatBalance.js");
+
+var _formatDate = __webpack_require__(/*! ./formatDate */ "./node_modules/@polkadot/util/format/formatDate.js");
+
+var _formatDecimal = __webpack_require__(/*! ./formatDecimal */ "./node_modules/@polkadot/util/format/formatDecimal.js");
+
+var _formatElapsed = __webpack_require__(/*! ./formatElapsed */ "./node_modules/@polkadot/util/format/formatElapsed.js");
+
+var _formatNumber = __webpack_require__(/*! ./formatNumber */ "./node_modules/@polkadot/util/format/formatNumber.js");
+
+var _si = __webpack_require__(/*! ./si */ "./node_modules/@polkadot/util/format/si.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/format/si.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/format/si.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findSi = findSi;
+exports.calcSi = calcSi;
+exports.SI = exports.SI_MID = void 0;
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const SI_MID = 8;
+exports.SI_MID = SI_MID;
+const SI = [{
+  power: -24,
+  text: 'yocto',
+  value: 'y'
+}, {
+  power: -21,
+  text: 'zepto',
+  value: 'z'
+}, {
+  power: -18,
+  text: 'atto',
+  value: 'a'
+}, {
+  power: -15,
+  text: 'femto',
+  value: 'f'
+}, {
+  power: -12,
+  text: 'pico',
+  value: 'p'
+}, {
+  power: -9,
+  text: 'nano',
+  value: 'n'
+}, {
+  power: -6,
+  text: 'micro',
+  value: 'µ'
+}, {
+  power: -3,
+  text: 'milli',
+  value: 'm'
+}, {
+  power: 0,
+  text: 'Unit',
+  value: '-'
+}, // position 8
+{
+  power: 3,
+  text: 'Kilo',
+  value: 'k'
+}, {
+  power: 6,
+  text: 'Mill',
+  value: 'M'
+}, // Mega, M
+{
+  power: 9,
+  text: 'Bill',
+  value: 'B'
+}, // Giga, G
+{
+  power: 12,
+  text: 'Tril',
+  value: 'T'
+}, // Tera, T
+{
+  power: 15,
+  text: 'Peta',
+  value: 'P'
+}, {
+  power: 18,
+  text: 'Exa',
+  value: 'E'
+}, {
+  power: 21,
+  text: 'Zeta',
+  value: 'Z'
+}, {
+  power: 24,
+  text: 'Yotta',
+  value: 'Y'
+}]; // Given a SI type (e.g. k, m, Y) find the SI definition
+
+exports.SI = SI;
+
+function findSi(type) {
+  // use a loop here, better RN support (which doesn't have [].find)
+  for (let i = 0; i < SI.length; i++) {
+    if (SI[i].value === type) {
+      return SI[i];
+    }
+  }
+
+  return SI[SI_MID];
+}
+
+function calcSi(text, decimals, forceUnit) {
+  if (forceUnit) {
+    return findSi(forceUnit);
+  }
+
+  const siDefIndex = SI_MID - 1 + Math.ceil((text.length - decimals) / 3);
+  return SI[siDefIndex] || SI[siDefIndex < 0 ? 0 : SI.length - 1];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/addPrefix.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/addPrefix.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexAddPrefix = hexAddPrefix;
+
+var _hasPrefix = __webpack_require__(/*! ./hasPrefix */ "./node_modules/@polkadot/util/hex/hasPrefix.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexAddPrefix
+ * @summary Adds the `0x` prefix to string values.
+ * @description
+ * Returns a `0x` prefixed string from the input value. If the input is already prefixed, it is returned unchanged.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexAddPrefix } from '@polkadot/util';
+ *
+ * console.log('With prefix', hexAddPrefix('0a0b12')); // => 0x0a0b12
+ * ```
+ */
+function hexAddPrefix(value) {
+  if (value && (0, _hasPrefix.hexHasPrefix)(value)) {
+    return value;
+  }
+
+  const prefix = value && value.length % 2 === 1 ? '0' : '';
+  return `0x${prefix}${value || ''}`;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/fixLength.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/fixLength.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexFixLength = hexFixLength;
+
+var _addPrefix = __webpack_require__(/*! ./addPrefix */ "./node_modules/@polkadot/util/hex/addPrefix.js");
+
+var _stripPrefix = __webpack_require__(/*! ./stripPrefix */ "./node_modules/@polkadot/util/hex/stripPrefix.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexFixLength
+ * @summary Shifts a hex string to a specific bitLength
+ * @description
+ * Returns a `0x` prefixed string with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length. Input values with less bits are returned as-is by default. When `withPadding` is set, shorter values are padded with `0`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexFixLength } from '@polkadot/util';
+ *
+ * console.log('fixed', hexFixLength('0x12', 16)); // => 0x12
+ * console.log('fixed', hexFixLength('0x12', 16, true)); // => 0x0012
+ * console.log('fixed', hexFixLength('0x0012', 8)); // => 0x12
+ * ```
+ */
+function hexFixLength(value, bitLength = -1, withPadding = false) {
+  const strLength = Math.ceil(bitLength / 4);
+  const hexLength = strLength + 2;
+  return (0, _addPrefix.hexAddPrefix)(bitLength === -1 || value.length === hexLength || !withPadding && value.length < hexLength ? (0, _stripPrefix.hexStripPrefix)(value) : value.length > hexLength ? (0, _stripPrefix.hexStripPrefix)(value).slice(-1 * strLength) : `${'0'.repeat(strLength)}${(0, _stripPrefix.hexStripPrefix)(value)}`.slice(-1 * strLength));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/hasPrefix.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/hasPrefix.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexHasPrefix = hexHasPrefix;
+
+var _hex = __webpack_require__(/*! ../is/hex */ "./node_modules/@polkadot/util/is/hex.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexHasPrefix
+ * @summary Tests for the existence of a `0x` prefix.
+ * @description
+ * Checks for a valid hex input value and if the start matched `0x`
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexHasPrefix } from '@polkadot/util';
+ *
+ * console.log('has prefix', hexHasPrefix('0x1234')); // => true
+ * ```
+ */
+function hexHasPrefix(value) {
+  return !!(value && (0, _hex.isHex)(value, -1, true) && value.substr(0, 2) === '0x');
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "hexAddPrefix", {
+  enumerable: true,
+  get: function () {
+    return _addPrefix.hexAddPrefix;
+  }
+});
+Object.defineProperty(exports, "hexFixLength", {
+  enumerable: true,
+  get: function () {
+    return _fixLength.hexFixLength;
+  }
+});
+Object.defineProperty(exports, "hexHasPrefix", {
+  enumerable: true,
+  get: function () {
+    return _hasPrefix.hexHasPrefix;
+  }
+});
+Object.defineProperty(exports, "hexStripPrefix", {
+  enumerable: true,
+  get: function () {
+    return _stripPrefix.hexStripPrefix;
+  }
+});
+Object.defineProperty(exports, "hexToBn", {
+  enumerable: true,
+  get: function () {
+    return _toBn.hexToBn;
+  }
+});
+Object.defineProperty(exports, "hexToNumber", {
+  enumerable: true,
+  get: function () {
+    return _toNumber.hexToNumber;
+  }
+});
+Object.defineProperty(exports, "hexToString", {
+  enumerable: true,
+  get: function () {
+    return _toString.hexToString;
+  }
+});
+Object.defineProperty(exports, "hexToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.hexToU8a;
+  }
+});
+
+var _addPrefix = __webpack_require__(/*! ./addPrefix */ "./node_modules/@polkadot/util/hex/addPrefix.js");
+
+var _fixLength = __webpack_require__(/*! ./fixLength */ "./node_modules/@polkadot/util/hex/fixLength.js");
+
+var _hasPrefix = __webpack_require__(/*! ./hasPrefix */ "./node_modules/@polkadot/util/hex/hasPrefix.js");
+
+var _stripPrefix = __webpack_require__(/*! ./stripPrefix */ "./node_modules/@polkadot/util/hex/stripPrefix.js");
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/hex/toBn.js");
+
+var _toNumber = __webpack_require__(/*! ./toNumber */ "./node_modules/@polkadot/util/hex/toNumber.js");
+
+var _toString = __webpack_require__(/*! ./toString */ "./node_modules/@polkadot/util/hex/toString.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/hex/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/stripPrefix.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/stripPrefix.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexStripPrefix = hexStripPrefix;
+
+var _hasPrefix = __webpack_require__(/*! ./hasPrefix */ "./node_modules/@polkadot/util/hex/hasPrefix.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const UNPREFIX_HEX_REGEX = /^[a-fA-F0-9]+$/;
+/**
+ * @name hexStripPrefix
+ * @summary Strips any leading `0x` prefix.
+ * @description
+ * Tests for the existence of a `0x` prefix, and returns the value without the prefix. Un-prefixed values are returned as-is.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexStripPrefix } from '@polkadot/util';
+ *
+ * console.log('stripped', hexStripPrefix('0x1234')); // => 1234
+ * ```
+ */
+
+function hexStripPrefix(value) {
+  if (!value) {
+    return '';
+  }
+
+  if ((0, _hasPrefix.hexHasPrefix)(value)) {
+    return value.substr(2);
+  }
+
+  if (UNPREFIX_HEX_REGEX.test(value)) {
+    return value;
+  }
+
+  throw new Error(`Invalid hex ${value} passed to hexStripPrefix`);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/toBn.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/toBn.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexToBn = hexToBn;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+var _boolean = __webpack_require__(/*! ../is/boolean */ "./node_modules/@polkadot/util/is/boolean.js");
+
+var _stripPrefix = __webpack_require__(/*! ./stripPrefix */ "./node_modules/@polkadot/util/hex/stripPrefix.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function reverse(value) {
+  return (value.match(/.{1,2}/g) || []).reverse().join('');
+}
+/**
+ * @name hexToBn
+ * @summary Creates a BN.js bignumber object from a hex string.
+ * @description
+ * `null` inputs returns a `BN(0)` result. Hex input values return the actual value converted to a BN. Anything that is not a hex string (including the `0x` prefix) throws an error.
+ * @param _value The value to convert
+ * @param _options Options to pass while converting
+ * @param _options.isLe Convert using Little Endian
+ * @param _options.isNegative Convert using two's complement
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexToBn } from '@polkadot/util';
+ *
+ * hexToBn('0x123480001f'); // => BN(0x123480001f)
+ * ```
+ */
+
+
+function hexToBn(value, options = {
+  isLe: false,
+  isNegative: false
+}) {
+  if (!value) {
+    return new _bn.default(0);
+  }
+
+  const _options = _objectSpread({
+    isLe: false,
+    isNegative: false
+  }, (0, _boolean.isBoolean)(options) ? {
+    isLe: options
+  } : options);
+
+  const _value = (0, _stripPrefix.hexStripPrefix)(value); // FIXME: Use BN's 3rd argument `isLe` once this issue is fixed
+  // https://github.com/indutny/bn.js/issues/208
+
+
+  const bn = new _bn.default((_options.isLe ? reverse(_value) : _value) || '00', 16); // fromTwos takes as parameter the number of bits, which is the hex length
+  // multiplied by 4.
+
+  return _options.isNegative ? bn.fromTwos(_value.length * 4) : bn;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/toNumber.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/toNumber.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexToNumber = hexToNumber;
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/hex/toBn.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexToNumber
+ * @summary Creates a Number value from a Buffer object.
+ * @description
+ * `null` inputs returns an NaN result, `hex` values return the actual value as a `Number`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexToNumber } from '@polkadot/util';
+ *
+ * hexToNumber('0x1234'); // => 0x1234
+ * ```
+ */
+function hexToNumber(value) {
+  return value ? (0, _toBn.hexToBn)(value).toNumber() : NaN;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/toString.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/toString.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexToString = hexToString;
+
+var _toString = __webpack_require__(/*! ../u8a/toString */ "./node_modules/@polkadot/util/u8a/toString.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/hex/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexToU8a
+ * @summary Creates a Uint8Array object from a hex string.
+ * @description
+ * Hex input values return the actual bytes value converted to a string. Anything that is not a hex string (including the `0x` prefix) throws an error.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexToString } from '@polkadot/util';
+ *
+ * hexToU8a('0x68656c6c6f'); // hello
+ * ```
+ */
+function hexToString(_value) {
+  return (0, _toString.u8aToString)((0, _toU8a.hexToU8a)(_value));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/hex/toU8a.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/hex/toU8a.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexToU8a = hexToU8a;
+
+var _assert = __webpack_require__(/*! ../assert */ "./node_modules/@polkadot/util/assert.js");
+
+var _hex = __webpack_require__(/*! ../is/hex */ "./node_modules/@polkadot/util/is/hex.js");
+
+var _stripPrefix = __webpack_require__(/*! ./stripPrefix */ "./node_modules/@polkadot/util/hex/stripPrefix.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name hexToU8a
+ * @summary Creates a Uint8Array object from a hex string.
+ * @description
+ * `null` inputs returns an empty `Uint8Array` result. Hex input values return the actual bytes value converted to a Uint8Array. Anything that is not a hex string (including the `0x` prefix) throws an error.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { hexToU8a } from '@polkadot/util';
+ *
+ * hexToU8a('0x80001f'); // Uint8Array([0x80, 0x00, 0x1f])
+ * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
+ * ```
+ */
+function hexToU8a(_value, bitLength = -1) {
+  if (!_value) {
+    return new Uint8Array();
+  }
+
+  (0, _assert.assert)((0, _hex.isHex)(_value), `Expected hex value to convert, found '${_value}'`);
+  const value = (0, _stripPrefix.hexStripPrefix)(_value);
+  const valLength = value.length / 2;
+  const bufLength = Math.ceil(bitLength === -1 ? valLength : bitLength / 8);
+  const result = new Uint8Array(bufLength);
+  const offset = Math.max(0, bufLength - valLength);
+
+  for (let index = 0; index < bufLength; index++) {
+    result[index + offset] = parseInt(value.substr(index * 2, 2), 16);
+  }
+
+  return result;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/@polkadot/util/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {
+  assert: true,
+  assertReturn: true,
+  detectPackage: true,
+  extractTime: true,
+  logger: true,
+  promisify: true
+};
+Object.defineProperty(exports, "assert", {
+  enumerable: true,
+  get: function () {
+    return _assert.assert;
+  }
+});
+Object.defineProperty(exports, "assertReturn", {
+  enumerable: true,
+  get: function () {
+    return _assert.assertReturn;
+  }
+});
+Object.defineProperty(exports, "detectPackage", {
+  enumerable: true,
+  get: function () {
+    return _detectPackage.detectPackage;
+  }
+});
+Object.defineProperty(exports, "extractTime", {
+  enumerable: true,
+  get: function () {
+    return _extractTime.extractTime;
+  }
+});
+Object.defineProperty(exports, "logger", {
+  enumerable: true,
+  get: function () {
+    return _logger.logger;
+  }
+});
+Object.defineProperty(exports, "promisify", {
+  enumerable: true,
+  get: function () {
+    return _promisify.promisify;
+  }
+});
+
+var _assert = __webpack_require__(/*! ./assert */ "./node_modules/@polkadot/util/assert.js");
+
+var _detectPackage = __webpack_require__(/*! ./detectPackage */ "./node_modules/@polkadot/util/detectPackage.js");
+
+var _extractTime = __webpack_require__(/*! ./extractTime */ "./node_modules/@polkadot/util/extractTime.js");
+
+var _logger = __webpack_require__(/*! ./logger */ "./node_modules/@polkadot/util/logger.js");
+
+var _promisify = __webpack_require__(/*! ./promisify */ "./node_modules/@polkadot/util/promisify.js");
+
+var _array = __webpack_require__(/*! ./array */ "./node_modules/@polkadot/util/array/index.js");
+
+Object.keys(_array).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _array[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _array[key];
+    }
+  });
+});
+
+var _bn = __webpack_require__(/*! ./bn */ "./node_modules/@polkadot/util/bn/index.js");
+
+Object.keys(_bn).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _bn[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _bn[key];
+    }
+  });
+});
+
+var _buffer = __webpack_require__(/*! ./buffer */ "./node_modules/@polkadot/util/buffer/index.js");
+
+Object.keys(_buffer).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _buffer[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _buffer[key];
+    }
+  });
+});
+
+var _compact = __webpack_require__(/*! ./compact */ "./node_modules/@polkadot/util/compact/index.js");
+
+Object.keys(_compact).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _compact[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _compact[key];
+    }
+  });
+});
+
+var _format = __webpack_require__(/*! ./format */ "./node_modules/@polkadot/util/format/index.js");
+
+Object.keys(_format).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _format[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _format[key];
+    }
+  });
+});
+
+var _hex = __webpack_require__(/*! ./hex */ "./node_modules/@polkadot/util/hex/index.js");
+
+Object.keys(_hex).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _hex[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _hex[key];
+    }
+  });
+});
+
+var _is = __webpack_require__(/*! ./is */ "./node_modules/@polkadot/util/is/index.js");
+
+Object.keys(_is).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _is[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _is[key];
+    }
+  });
+});
+
+var _number = __webpack_require__(/*! ./number */ "./node_modules/@polkadot/util/number/index.js");
+
+Object.keys(_number).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _number[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _number[key];
+    }
+  });
+});
+
+var _string = __webpack_require__(/*! ./string */ "./node_modules/@polkadot/util/string/index.js");
+
+Object.keys(_string).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _string[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _string[key];
+    }
+  });
+});
+
+var _u8a = __webpack_require__(/*! ./u8a */ "./node_modules/@polkadot/util/u8a/index.js");
+
+Object.keys(_u8a).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _u8a[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _u8a[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/ascii.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/ascii.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isAscii = isAscii;
+
+var _toU8a = __webpack_require__(/*! ../u8a/toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+var _string = __webpack_require__(/*! ./string */ "./node_modules/@polkadot/util/is/string.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const FORMAT = [9, 10, 13];
+/**
+ * @name isAscii
+ * @summary Tests if the input is printable ASCII
+ * @description
+ * Checks to see if the input string or Uint8Array is printable ASCII, 32-127 + formatters
+ */
+
+function isAscii(value) {
+  return value ? !(0, _toU8a.u8aToU8a)(value).some(byte => byte >= 127 || byte < 32 && !FORMAT.includes(byte)) : (0, _string.isString)(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/bigInt.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/bigInt.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isBigInt = isBigInt;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isBigInt
+ * @summary Tests for a `BigInt` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `BigInt`
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isBigInt } from '@polkadot/util';
+ *
+ * console.log('isBigInt', isBigInt(123_456n)); // => true
+ * ```
+ */
+function isBigInt(value) {
+  return typeof value === 'bigint';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/bn.js":
+/*!**********************************************!*\
+  !*** ./node_modules/@polkadot/util/is/bn.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isBn = isBn;
+
+var _bn = _interopRequireDefault(__webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isBn
+ * @summary Tests for a `BN` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `BN` (bn.js).
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import BN from 'bn.js';
+ * import { isBn } from '@polkadot/util';
+ *
+ * console.log('isBn', isBn(new BN(1))); // => true
+ * ```
+ */
+function isBn(value) {
+  return _bn.default.isBN(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/boolean.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/boolean.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isBoolean = isBoolean;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isBoolean
+ * @summary Tests for a boolean value.
+ * @description
+ * Checks to see if the input value is a JavaScript boolean.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isBoolean } from '@polkadot/util';
+ *
+ * isBoolean(false); // => true
+ * ```
+ */
+function isBoolean(value) {
+  return typeof value === 'boolean';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/buffer.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/buffer.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isBuffer = isBuffer;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isBuffer
+ * @summary Tests for a `Buffer` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `Buffer`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isBuffer } from '@polkadot/util';
+ *
+ * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
+ * ```
+ */
+function isBuffer(value) {
+  return Buffer.isBuffer(value);
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/childClass.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/childClass.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isChildClass = isChildClass;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isChildClass
+ * @summary Tests if the child extends the parent Class
+ * @description
+ * Checks to see if the child Class extends the parent Class
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isChildClass } from '@polkadot/util';
+ *
+ * console.log('isChildClass', isChildClass(BN, BN); // => true
+ * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
+ * ```
+ */
+function isChildClass(Parent, Child) {
+  // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
+  return Child // eslint-disable-next-line no-prototype-builtins
+  ? Parent === Child || Parent.isPrototypeOf(Child) : false;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/error.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/error.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isError = isError;
+
+var _instanceOf = __webpack_require__(/*! ./instanceOf */ "./node_modules/@polkadot/util/is/instanceOf.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isError
+ * @summary Tests for a `Error` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `Error`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isError } from '@polkadot/util';
+ *
+ * console.log('isError', isError(new Error('message'))); // => true
+ * ```
+ */
+function isError(value) {
+  return (0, _instanceOf.isInstanceOf)(value, Error);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/function.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/function.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isFunction = isFunction;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// eslint-disable-next-line @typescript-eslint/ban-types
+
+/**
+ * @name isFunction
+ * @summary Tests for a `function`.
+ * @description
+ * Checks to see if the input value is a JavaScript function.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isFunction } from '@polkadot/util';
+ *
+ * isFunction(() => false); // => true
+ * ```
+ */
+function isFunction(value) {
+  return typeof value === 'function';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/hex.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/is/hex.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isHex = isHex;
+
+var _string = __webpack_require__(/*! ./string */ "./node_modules/@polkadot/util/is/string.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const HEX_REGEX = /^0x[a-fA-F0-9]+$/;
+/**
+ * @name isHex
+ * @summary Tests for a hex string.
+ * @description
+ * Checks to see if the input value is a `0x` prefixed hex string. Optionally (`bitLength` !== -1) checks to see if the bitLength is correct.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isHex } from '@polkadot/util';
+ *
+ * isHex('0x1234'); // => true
+ * isHex('0x1234', 8); // => false
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+
+function isHex(value, bitLength = -1, ignoreLength = false) {
+  const isValidHex = value === '0x' || (0, _string.isString)(value) && HEX_REGEX.test(value.toString());
+
+  if (isValidHex && bitLength !== -1) {
+    return value.length === 2 + Math.ceil(bitLength / 4);
+  }
+
+  return isValidHex && (ignoreLength || value.length % 2 === 0);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "isAscii", {
+  enumerable: true,
+  get: function () {
+    return _ascii.isAscii;
+  }
+});
+Object.defineProperty(exports, "isBigInt", {
+  enumerable: true,
+  get: function () {
+    return _bigInt.isBigInt;
+  }
+});
+Object.defineProperty(exports, "isBn", {
+  enumerable: true,
+  get: function () {
+    return _bn.isBn;
+  }
+});
+Object.defineProperty(exports, "isBuffer", {
+  enumerable: true,
+  get: function () {
+    return _buffer.isBuffer;
+  }
+});
+Object.defineProperty(exports, "isBoolean", {
+  enumerable: true,
+  get: function () {
+    return _boolean.isBoolean;
+  }
+});
+Object.defineProperty(exports, "isChildClass", {
+  enumerable: true,
+  get: function () {
+    return _childClass.isChildClass;
+  }
+});
+Object.defineProperty(exports, "isError", {
+  enumerable: true,
+  get: function () {
+    return _error.isError;
+  }
+});
+Object.defineProperty(exports, "isFunction", {
+  enumerable: true,
+  get: function () {
+    return _function.isFunction;
+  }
+});
+Object.defineProperty(exports, "isHex", {
+  enumerable: true,
+  get: function () {
+    return _hex.isHex;
+  }
+});
+Object.defineProperty(exports, "isInstanceOf", {
+  enumerable: true,
+  get: function () {
+    return _instanceOf.isInstanceOf;
+  }
+});
+Object.defineProperty(exports, "isIp", {
+  enumerable: true,
+  get: function () {
+    return _ip.isIp;
+  }
+});
+Object.defineProperty(exports, "isJsonObject", {
+  enumerable: true,
+  get: function () {
+    return _jsonObject.isJsonObject;
+  }
+});
+Object.defineProperty(exports, "isNull", {
+  enumerable: true,
+  get: function () {
+    return _null.isNull;
+  }
+});
+Object.defineProperty(exports, "isNumber", {
+  enumerable: true,
+  get: function () {
+    return _number.isNumber;
+  }
+});
+Object.defineProperty(exports, "isObject", {
+  enumerable: true,
+  get: function () {
+    return _object.isObject;
+  }
+});
+Object.defineProperty(exports, "isObservable", {
+  enumerable: true,
+  get: function () {
+    return _observable.isObservable;
+  }
+});
+Object.defineProperty(exports, "isString", {
+  enumerable: true,
+  get: function () {
+    return _string.isString;
+  }
+});
+Object.defineProperty(exports, "isTestChain", {
+  enumerable: true,
+  get: function () {
+    return _testChain.isTestChain;
+  }
+});
+Object.defineProperty(exports, "isToBn", {
+  enumerable: true,
+  get: function () {
+    return _toBn.isToBn;
+  }
+});
+Object.defineProperty(exports, "isU8a", {
+  enumerable: true,
+  get: function () {
+    return _u8a.isU8a;
+  }
+});
+Object.defineProperty(exports, "isUndefined", {
+  enumerable: true,
+  get: function () {
+    return _undefined.isUndefined;
+  }
+});
+Object.defineProperty(exports, "isUtf8", {
+  enumerable: true,
+  get: function () {
+    return _utf.isUtf8;
+  }
+});
+Object.defineProperty(exports, "isWasm", {
+  enumerable: true,
+  get: function () {
+    return _wasm.isWasm;
+  }
+});
+
+var _ascii = __webpack_require__(/*! ./ascii */ "./node_modules/@polkadot/util/is/ascii.js");
+
+var _bigInt = __webpack_require__(/*! ./bigInt */ "./node_modules/@polkadot/util/is/bigInt.js");
+
+var _bn = __webpack_require__(/*! ./bn */ "./node_modules/@polkadot/util/is/bn.js");
+
+var _buffer = __webpack_require__(/*! ./buffer */ "./node_modules/@polkadot/util/is/buffer.js");
+
+var _boolean = __webpack_require__(/*! ./boolean */ "./node_modules/@polkadot/util/is/boolean.js");
+
+var _childClass = __webpack_require__(/*! ./childClass */ "./node_modules/@polkadot/util/is/childClass.js");
+
+var _error = __webpack_require__(/*! ./error */ "./node_modules/@polkadot/util/is/error.js");
+
+var _function = __webpack_require__(/*! ./function */ "./node_modules/@polkadot/util/is/function.js");
+
+var _hex = __webpack_require__(/*! ./hex */ "./node_modules/@polkadot/util/is/hex.js");
+
+var _instanceOf = __webpack_require__(/*! ./instanceOf */ "./node_modules/@polkadot/util/is/instanceOf.js");
+
+var _ip = __webpack_require__(/*! ./ip */ "./node_modules/@polkadot/util/is/ip.js");
+
+var _jsonObject = __webpack_require__(/*! ./jsonObject */ "./node_modules/@polkadot/util/is/jsonObject.js");
+
+var _null = __webpack_require__(/*! ./null */ "./node_modules/@polkadot/util/is/null.js");
+
+var _number = __webpack_require__(/*! ./number */ "./node_modules/@polkadot/util/is/number.js");
+
+var _object = __webpack_require__(/*! ./object */ "./node_modules/@polkadot/util/is/object.js");
+
+var _observable = __webpack_require__(/*! ./observable */ "./node_modules/@polkadot/util/is/observable.js");
+
+var _string = __webpack_require__(/*! ./string */ "./node_modules/@polkadot/util/is/string.js");
+
+var _testChain = __webpack_require__(/*! ./testChain */ "./node_modules/@polkadot/util/is/testChain.js");
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/is/toBn.js");
+
+var _u8a = __webpack_require__(/*! ./u8a */ "./node_modules/@polkadot/util/is/u8a.js");
+
+var _undefined = __webpack_require__(/*! ./undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+var _utf = __webpack_require__(/*! ./utf8 */ "./node_modules/@polkadot/util/is/utf8.js");
+
+var _wasm = __webpack_require__(/*! ./wasm */ "./node_modules/@polkadot/util/is/wasm.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/instanceOf.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/instanceOf.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isInstanceOf = isInstanceOf;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isInstanceOf
+ * @summary Tests for a instance of a class.
+ * @description
+ * Checks to see if the input value is an instance of the test class.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isInstanceOf } from '@polkadot/util';
+ *
+ * console.log('isInstanceOf', isInstanceOf(new Array(0), Array)); // => true
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function isInstanceOf(value, clazz) {
+  return value instanceof clazz;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/ip.js":
+/*!**********************************************!*\
+  !*** ./node_modules/@polkadot/util/is/ip.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isIp = isIp;
+
+var _ipRegex = _interopRequireDefault(__webpack_require__(/*! ip-regex */ "./node_modules/ip-regex/index.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isIp
+ * @summary Tests if the value is a valid IP address
+ * @description
+ * Checks to see if the value is a valid IP address. Optionally check for either v4/v6
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isIp } from '@polkadot/util';
+ *
+ * isIp('192.168.0.1')); // => true
+ * isIp('1:2:3:4:5:6:7:8'); // => true
+ * isIp('192.168.0.1', 'v6')); // => false
+ * isIp('1:2:3:4:5:6:7:8', 'v4'); // => false
+ * ```
+ */
+function isIp(value, type) {
+  if (type === 'v4') {
+    return _ipRegex.default.v4({
+      exact: true
+    }).test(value);
+  } else if (type === 'v6') {
+    return _ipRegex.default.v6({
+      exact: true
+    }).test(value);
+  }
+
+  return (0, _ipRegex.default)({
+    exact: true
+  }).test(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/jsonObject.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/jsonObject.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isJsonObject = isJsonObject;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isJsonObject
+ * @summary Tests for a valid JSON `object`.
+ * @description
+ * Checks to see if the input value is a valid JSON object.
+ * It returns false if the input is JSON parsable, but not an Javascript object.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isJsonObject } from '@polkadot/util';
+ *
+ * isJsonObject({}); // => true
+ * isJsonObject({
+ *  "Test": "1234",
+ *  "NestedTest": {
+ *   "Test": "5678"
+ *  }
+ * }); // => true
+ * isJsonObject(1234); // JSON parsable, but not an object =>  false
+ * isJsonObject(null); // JSON parsable, but not an object => false
+ * isJsonObject('not an object'); // => false
+ * ```
+ */
+function isJsonObject(value) {
+  const str = typeof value !== 'string' ? JSON.stringify(value) : value;
+
+  try {
+    const obj = JSON.parse(str);
+    return typeof obj === 'object' && obj !== null;
+  } catch (e) {
+    return false;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/null.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/null.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isNull = isNull;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isNull
+ * @summary Tests for a `null` values.
+ * @description
+ * Checks to see if the input value is `null`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isNull } from '@polkadot/util';
+ *
+ * console.log('isNull', isNull(null)); // => true
+ * ```
+ */
+function isNull(value) {
+  return value === null;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/number.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/number.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isNumber = isNumber;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isNumber
+ * @summary Tests for a JavaScript number.
+ * @description
+ * Checks to see if the input value is a valid number.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isNumber } from '@polkadot/util';
+ *
+ * console.log('isNumber', isNumber(1234)); // => true
+ * ```
+ */
+function isNumber(value) {
+  return typeof value === 'number';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/object.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/object.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isObject = isObject;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isObject
+ * @summary Tests for an `object`.
+ * @description
+ * Checks to see if the input value is a JavaScript object.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isObject } from '@polkadot/util';
+ *
+ * isObject({}); // => true
+ * isObject('something'); // => false
+ * ```
+ */
+function isObject(value) {
+  return typeof value === 'object';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/observable.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/observable.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isObservable = isObservable;
+
+var _function = __webpack_require__(/*! ./function */ "./node_modules/@polkadot/util/is/function.js");
+
+var _object = __webpack_require__(/*! ./object */ "./node_modules/@polkadot/util/is/object.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isBObservable
+ * @summary Tests for a `Observable` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `BN` (bn.js).
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isObservable } from '@polkadot/util';
+ *
+ * console.log('isObservable', isObservable(...));
+ * ```
+ */
+function isObservable(value) {
+  return (0, _object.isObject)(value) && (0, _function.isFunction)(value.next);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/string.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/string.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isString = isString;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isString
+ * @summary Tests for a string.
+ * @description
+ * Checks to see if the input value is a JavaScript string.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isString } from '@polkadot/util';
+ *
+ * console.log('isString', isString('test')); // => true
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/testChain.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/testChain.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isTestChain = isTestChain;
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const re = /(Development|Local Testnet)$/;
+
+function isTestChain(chain) {
+  if (!chain) {
+    return false;
+  }
+
+  return !!re.test(chain.toString());
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/toBn.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/toBn.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isToBn = isToBn;
+
+var _function = __webpack_require__(/*! ./function */ "./node_modules/@polkadot/util/is/function.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function isToBn(value) {
+  return !!value && (0, _function.isFunction)(value.toBn);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/u8a.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/is/u8a.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isU8a = isU8a;
+
+var _instanceOf = __webpack_require__(/*! ./instanceOf */ "./node_modules/@polkadot/util/is/instanceOf.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isU8a
+ * @summary Tests for a `Uint8Array` object instance.
+ * @description
+ * Checks to see if the input object is an instance of `Uint8Array`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isUint8Array } from '@polkadot/util';
+ *
+ * console.log('isU8a', isU8a([])); // => false
+ * ```
+ */
+function isU8a(value) {
+  return (0, _instanceOf.isInstanceOf)(value, Uint8Array);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/undefined.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/undefined.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isUndefined = isUndefined;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name isUndefined
+ * @summary Tests for a `undefined` values.
+ * @description
+ * Checks to see if the input value is `undefined`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { isUndefined } from '@polkadot/util';
+ *
+ * console.log('isUndefined', isUndefined(void(0))); // => true
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isUndefined(value) {
+  return typeof value === 'undefined';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/utf8.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/utf8.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isUtf8 = isUtf8;
+
+var _toU8a = __webpack_require__(/*! ../u8a/toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+var _string = __webpack_require__(/*! ./string */ "./node_modules/@polkadot/util/is/string.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// Adapted from https://github.com/JulienPalard/is_utf8/blob/master/is_utf8.c
+
+/**
+ * @name isUtf8
+ * @summary Tests if the input is valid Utf8
+ * @description
+ * Checks to see if the input string or Uint8Array is valid Utf8
+ */
+function isUtf8(value) {
+  if (!value) {
+    return (0, _string.isString)(value);
+  }
+
+  const u8a = (0, _toU8a.u8aToU8a)(value);
+  const len = u8a.length;
+  let i = 0;
+
+  while (i < len) {
+    if (u8a[i] <= 0x7F)
+      /* 00..7F */
+      {
+        i += 1;
+      } else if (u8a[i] >= 0xC2 && u8a[i] <= 0xDF)
+      /* C2..DF 80..BF */
+      {
+        if (i + 1 < len)
+          /* Expect a 2nd byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte between C2 and DF, expecting a 2nd byte between 80 and BF";
+              // *faulty_bytes = 2;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte between C2 and DF, expecting a 2nd byte.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 2;
+      } else if (u8a[i] === 0xE0)
+      /* E0 A0..BF 80..BF */
+      {
+        if (i + 2 < len)
+          /* Expect a 2nd and 3rd byte */
+          {
+            if (u8a[i + 1] < 0xA0 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte of E0, expecting a 2nd byte between A0 and BF.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte of E0, expecting a 3nd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte of E0, expecting two following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 3;
+      } else if (u8a[i] >= 0xE1 && u8a[i] <= 0xEC)
+      /* E1..EC 80..BF 80..BF */
+      {
+        if (i + 2 < len)
+          /* Expect a 2nd and 3rd byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte between E1 and EC, expecting the 2nd byte between 80 and BF.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte between E1 and EC, expecting the 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte between E1 and EC, expecting two following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 3;
+      } else if (u8a[i] === 0xED)
+      /* ED 80..9F 80..BF */
+      {
+        if (i + 2 < len)
+          /* Expect a 2nd and 3rd byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0x9F) {
+              // *message = "After a first byte of ED, expecting 2nd byte between 80 and 9F.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte of ED, expecting 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte of ED, expecting two following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 3;
+      } else if (u8a[i] >= 0xEE && u8a[i] <= 0xEF)
+      /* EE..EF 80..BF 80..BF */
+      {
+        if (i + 2 < len)
+          /* Expect a 2nd and 3rd byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte between EE and EF, expecting 2nd byte between 80 and BF.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte between EE and EF, expecting 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte between EE and EF, two following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 3;
+      } else if (u8a[i] === 0xF0)
+      /* F0 90..BF 80..BF 80..BF */
+      {
+        if (i + 3 < len)
+          /* Expect a 2nd, 3rd 3th byte */
+          {
+            if (u8a[i + 1] < 0x90 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte of F0, expecting 2nd byte between 90 and BF.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte of F0, expecting 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+
+            if (u8a[i + 3] < 0x80 || u8a[i + 3] > 0xBF) {
+              // *message = "After a first byte of F0, expecting 4th byte between 80 and BF.";
+              // *faulty_bytes = 4;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte of F0, expecting three following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 4;
+      } else if (u8a[i] >= 0xF1 && u8a[i] <= 0xF3)
+      /* F1..F3 80..BF 80..BF 80..BF */
+      {
+        if (i + 3 < len)
+          /* Expect a 2nd, 3rd 3th byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0xBF) {
+              // *message = "After a first byte of F1, F2, or F3, expecting a 2nd byte between 80 and BF.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte of F1, F2, or F3, expecting a 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+
+            if (u8a[i + 3] < 0x80 || u8a[i + 3] > 0xBF) {
+              // *message = "After a first byte of F1, F2, or F3, expecting a 4th byte between 80 and BF.";
+              // *faulty_bytes = 4;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte of F1, F2, or F3, expecting three following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 4;
+      } else if (u8a[i] === 0xF4)
+      /* F4 80..8F 80..BF 80..BF */
+      {
+        if (i + 3 < len)
+          /* Expect a 2nd, 3rd 3th byte */
+          {
+            if (u8a[i + 1] < 0x80 || u8a[i + 1] > 0x8F) {
+              // *message = "After a first byte of F4, expecting 2nd byte between 80 and 8F.";
+              // *faulty_bytes = 2;
+              return false;
+            }
+
+            if (u8a[i + 2] < 0x80 || u8a[i + 2] > 0xBF) {
+              // *message = "After a first byte of F4, expecting 3rd byte between 80 and BF.";
+              // *faulty_bytes = 3;
+              return false;
+            }
+
+            if (u8a[i + 3] < 0x80 || u8a[i + 3] > 0xBF) {
+              // *message = "After a first byte of F4, expecting 4th byte between 80 and BF.";
+              // *faulty_bytes = 4;
+              return false;
+            }
+          } else {
+          // *message = "After a first byte of F4, expecting three following bytes.";
+          // *faulty_bytes = 1;
+          return false;
+        }
+
+        i += 4;
+      } else {
+      // *message = "Expecting bytes in the following ranges: 00..7F C2..F4.";
+      // *faulty_bytes = 1;
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/is/wasm.js":
+/*!************************************************!*\
+  !*** ./node_modules/@polkadot/util/is/wasm.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isWasm = isWasm;
+
+var _eq = __webpack_require__(/*! ../u8a/eq */ "./node_modules/@polkadot/util/u8a/eq.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const WASM_MAGIC = new Uint8Array([0, 97, 115, 109]); // \0asm
+
+/**
+ * @name isWasm
+ * @summary Tests if the input has a WASM header
+ * @description
+ * Checks to see if the input Uint8Array contains a valid WASM header
+ */
+
+function isWasm(value) {
+  return !!value && (0, _eq.u8aEq)(value.subarray(0, 4), WASM_MAGIC);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/logger.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/logger.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.format = format;
+exports.logger = logger;
+
+var _formatDate = __webpack_require__(/*! ./format/formatDate */ "./node_modules/@polkadot/util/format/formatDate.js");
+
+var _bn = __webpack_require__(/*! ./is/bn */ "./node_modules/@polkadot/util/is/bn.js");
+
+var _function = __webpack_require__(/*! ./is/function */ "./node_modules/@polkadot/util/is/function.js");
+
+var _object = __webpack_require__(/*! ./is/object */ "./node_modules/@polkadot/util/is/object.js");
+
+var _u8a = __webpack_require__(/*! ./is/u8a */ "./node_modules/@polkadot/util/is/u8a.js");
+
+var _toHex = __webpack_require__(/*! ./u8a/toHex */ "./node_modules/@polkadot/util/u8a/toHex.js");
+
+var _toU8a = __webpack_require__(/*! ./u8a/toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+var _is = __webpack_require__(/*! ./is */ "./node_modules/@polkadot/util/is/index.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const logTo = {
+  debug: 'log',
+  error: 'error',
+  log: 'log',
+  warn: 'warn'
+};
+
+function formatOther(value) {
+  if (value && (0, _object.isObject)(value) && value.constructor === Object) {
+    return Object.keys(value).reduce((result, key) => {
+      result[key] = format(value[key]);
+      return result;
+    }, {});
+  }
+
+  return value;
+}
+
+function format(value) {
+  if (Array.isArray(value)) {
+    return value.map(format);
+  } else if ((0, _bn.isBn)(value)) {
+    return value.toString();
+  } else if ((0, _u8a.isU8a)(value) || (0, _is.isBuffer)(value)) {
+    return (0, _toHex.u8aToHex)((0, _toU8a.u8aToU8a)(value));
+  }
+
+  return formatOther(value);
+}
+
+function apply(log, type, values) {
+  if (values.length === 1 && (0, _function.isFunction)(values[0])) {
+    const fnResult = values[0]();
+    return apply(log, type, Array.isArray(fnResult) ? fnResult : [fnResult]);
+  }
+
+  console[logTo[log]]((0, _formatDate.formatDate)(new Date()), type, ...values.map(format));
+}
+
+function noop() {// noop
+}
+/**
+ * @name Logger
+ * @summary Creates a consistent log interface for messages
+ * @description
+ * Returns a `Logger` that has `.log`, `.error`, `.warn` and `.debug` (controlled with environment `DEBUG=typeA,typeB`) methods. Logging is done with a consistent prefix (type of logger, date) followed by the actual message using the underlying console.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * const l from '@polkadot/util/logger')('test');
+ *
+ * l.log('blah'); // <date>     TEST: blah
+ * ```
+ */
+
+
+function logger(_type) {
+  const type = `${_type.toUpperCase()}:`.padStart(16);
+  let isDebug;
+
+  try {
+    const isTest = "development" === 'test';
+    const debugList = (process.env.DEBUG || '').split(',');
+    isDebug = isTest || !!debugList.find(entry => _type.startsWith(entry));
+  } catch (error) {
+    isDebug = false;
+  }
+
+  return {
+    debug: isDebug ? (...values) => apply('debug', type, values) : noop,
+    error: (...values) => apply('error', type, values),
+    log: (...values) => apply('log', type, values),
+    noop,
+    warn: (...values) => apply('warn', type, values)
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/number/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/number/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "numberToHex", {
+  enumerable: true,
+  get: function () {
+    return _toHex.numberToHex;
+  }
+});
+Object.defineProperty(exports, "numberToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.numberToU8a;
+  }
+});
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/number/toHex.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/number/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/number/toHex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/number/toHex.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.numberToHex = numberToHex;
+
+var _fixLength = __webpack_require__(/*! ../hex/fixLength */ "./node_modules/@polkadot/util/hex/fixLength.js");
+
+var _null = __webpack_require__(/*! ../is/null */ "./node_modules/@polkadot/util/is/null.js");
+
+var _undefined = __webpack_require__(/*! ../is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name numberToHex
+ * @summary Creates a hex value from a number.
+ * @description
+ * `null`/`undefined`/`NaN` inputs returns an empty `0x` result. `number` input values return the actual bytes value converted to a `hex`. With `bitLength` set, it converts the number to the equivalent size.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { numberToHex } from '@polkadot/util';
+ *
+ * numberToHex(0x1234); // => '0x1234'
+ * numberToHex(0x1234, 32); // => 0x00001234
+ * ```
+ */
+function numberToHex(value, bitLength = -1) {
+  if ((0, _undefined.isUndefined)(value) || (0, _null.isNull)(value) || isNaN(value)) {
+    return '0x';
+  }
+
+  return (0, _fixLength.hexFixLength)(value.toString(16), bitLength, true);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/number/toU8a.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/number/toU8a.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.numberToU8a = numberToU8a;
+
+var _toU8a = __webpack_require__(/*! ../hex/toU8a */ "./node_modules/@polkadot/util/hex/toU8a.js");
+
+var _null = __webpack_require__(/*! ../is/null */ "./node_modules/@polkadot/util/is/null.js");
+
+var _undefined = __webpack_require__(/*! ../is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/number/toHex.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name numberToU8a
+ * @summary Creates a Uint8Array object from a number.
+ * @description
+ * `null`/`undefined`/`NaN` inputs returns an empty `Uint8Array` result. `number` input values return the actual bytes value converted to a `Uint8Array`. With `bitLength`, it converts the value to the equivalent size.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { numberToU8a } from '@polkadot/util';
+ *
+ * numberToU8a(0x1234); // => [0x12, 0x34]
+ * ```
+ */
+function numberToU8a(value, bitLength = -1) {
+  if ((0, _undefined.isUndefined)(value) || (0, _null.isNull)(value) || isNaN(value)) {
+    return new Uint8Array();
+  }
+
+  return (0, _toU8a.hexToU8a)((0, _toHex.numberToHex)(value, bitLength));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/promisify.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/promisify.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.promisify = promisify;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name promisify
+ * @summary Wraps an async callback into a `Promise`
+ * @description
+ * Wraps the supplied async function `fn` that has a standard JS callback `(error: Error, result: any)` into a `Promise`, passing the supplied parameters. When `error` is set, the Promise is rejected, else the Promise resolves with the `result` value.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * const { promisify } from '@polkadot/util';
+ *
+ * await promisify(null, ((a, cb) => cb(null, a), true); // resolves with `true`
+ * await promisify(null, (cb) => cb(new Error('error!'))); // rejects with `error!`
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function promisify(self, fn, ...params) {
+  return new Promise((resolve, reject) => {
+    const handler = (error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+    };
+
+    fn.apply(self, params.concat(handler));
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/camelCase.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/camelCase.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringCamelCase = stringCamelCase;
+
+var _camelcase = _interopRequireDefault(__webpack_require__(/*! camelcase */ "./node_modules/camelcase/index.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name stringCamelCase
+ * @summary Convert a dash/dot/underscore/space separated string/String to camelCase
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function stringCamelCase(value) {
+  return (0, _camelcase.default)(value.toString());
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "stringCamelCase", {
+  enumerable: true,
+  get: function () {
+    return _camelCase.stringCamelCase;
+  }
+});
+Object.defineProperty(exports, "stringLowerFirst", {
+  enumerable: true,
+  get: function () {
+    return _lowerFirst.stringLowerFirst;
+  }
+});
+Object.defineProperty(exports, "stringShorten", {
+  enumerable: true,
+  get: function () {
+    return _shorten.stringShorten;
+  }
+});
+Object.defineProperty(exports, "stringToHex", {
+  enumerable: true,
+  get: function () {
+    return _toHex.stringToHex;
+  }
+});
+Object.defineProperty(exports, "stringToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.stringToU8a;
+  }
+});
+Object.defineProperty(exports, "stringUpperFirst", {
+  enumerable: true,
+  get: function () {
+    return _upperFirst.stringUpperFirst;
+  }
+});
+
+var _camelCase = __webpack_require__(/*! ./camelCase */ "./node_modules/@polkadot/util/string/camelCase.js");
+
+var _lowerFirst = __webpack_require__(/*! ./lowerFirst */ "./node_modules/@polkadot/util/string/lowerFirst.js");
+
+var _shorten = __webpack_require__(/*! ./shorten */ "./node_modules/@polkadot/util/string/shorten.js");
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/string/toHex.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/string/toU8a.js");
+
+var _upperFirst = __webpack_require__(/*! ./upperFirst */ "./node_modules/@polkadot/util/string/upperFirst.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/lowerFirst.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/lowerFirst.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringLowerFirst = stringLowerFirst;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name stringLowerFirst
+ * @summary Lowercase the first letter of a string
+ * @description
+ * Lowercase the first letter of a string
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { stringLowerFirst } from '@polkadot/util';
+ *
+ * stringLowerFirst('ABC'); // => 'aBC'
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function stringLowerFirst(value) {
+  return value ? value.charAt(0).toLowerCase() + value.slice(1) : '';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/shorten.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/shorten.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringShorten = stringShorten;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name stringShorten
+ * @summary Returns a string with maximum length
+ * @description
+ * Checks the string against the `prefixLength`, if longer than double this, shortens it by placing `..` in the middle of it
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { stringShorten } from '@polkadot/util';
+ *
+ * stringShorten('1234567890', 2); // => 12..90
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function stringShorten(value, prefixLength = 6) {
+  if (value.length <= 2 + 2 * prefixLength) {
+    return value.toString();
+  }
+
+  return `${value.substr(0, prefixLength)}…${value.slice(-prefixLength)}`;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/toHex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/toHex.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringToHex = stringToHex;
+
+var _toHex = __webpack_require__(/*! ../u8a/toHex */ "./node_modules/@polkadot/util/u8a/toHex.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/string/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name stringToHex
+ * @summary Creates a hex string from a utf-8 string
+ * @description
+ * String input values return the actual encoded hex value.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { stringToHex } from '@polkadot/util';
+ *
+ * stringToU8a('hello'); // 0x68656c6c6f
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function stringToHex(value) {
+  return (0, _toHex.u8aToHex)((0, _toU8a.stringToU8a)(value));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/toU8a.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/toU8a.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringToU8a = stringToU8a;
+
+var _xTextencoder = _interopRequireDefault(__webpack_require__(/*! @polkadot/x-textencoder */ "./node_modules/@polkadot/x-textencoder/browser.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const encoder = new _xTextencoder.default();
+/**
+ * @name stringToU8a
+ * @summary Creates a Uint8Array object from a utf-8 string.
+ * @description
+ * String input values return the actual encoded `UInt8Array`. `null` or `undefined` values returns an empty encoded array.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { stringToU8a } from '@polkadot/util';
+ *
+ * stringToU8a('hello'); // [0x68, 0x65, 0x6c, 0x6c, 0x6f]
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+
+function stringToU8a(value) {
+  return value ? encoder.encode(value.toString()) : new Uint8Array();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/string/upperFirst.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/util/string/upperFirst.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.stringUpperFirst = stringUpperFirst;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name stringUpperFirst
+ * @summary Lowercase the first letter of a string
+ * @description
+ * Lowercase the first letter of a string
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { stringUpperFirst } from '@polkadot/util';
+ *
+ * stringUpperFirst('abc'); // => 'Abc'
+ * ```
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function stringUpperFirst(value) {
+  return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/concat.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/concat.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aConcat = u8aConcat;
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name u8aConcat
+ * @summary Creates a concatenated Uint8Array from the inputs.
+ * @description
+ * Concatenates the input arrays into a single `UInt8Array`.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { { u8aConcat } from '@polkadot/util';
+ *
+ * u8aConcat(
+ *   new Uint8Array([1, 2, 3]),
+ *   new Uint8Array([4, 5, 6])
+ * ); // [1, 2, 3, 4, 5, 6]
+ * ```
+ */
+function u8aConcat(...list) {
+  let length = 0;
+  let offset = 0;
+  const u8as = new Array(list.length);
+
+  for (let i = 0; i < list.length; i++) {
+    u8as[i] = (0, _toU8a.u8aToU8a)(list[i]);
+    length += u8as[i].length;
+  }
+
+  const result = new Uint8Array(length);
+
+  for (let i = 0; i < u8as.length; i++) {
+    result.set(u8as[i], offset);
+    offset += u8as[i].length;
+  }
+
+  return result;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/eq.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/eq.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aEq = u8aEq;
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function equals(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+/**
+ * @name u8aEq
+ * @summary Compares two Uint8Arrays.
+ * @description
+ * For `UInt8Array` (or hex string) input values true if there is a match.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { { u8aEq } from '@polkadot/util';
+ *
+ * u8aEq(new Uint8Array([0x68, 0x65]), new Uint8Array([0x68, 0x65])); // true
+ * ```
+ */
+
+
+function u8aEq(a, b) {
+  return equals((0, _toU8a.u8aToU8a)(a), (0, _toU8a.u8aToU8a)(b));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/fixLength.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/fixLength.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aFixLength = u8aFixLength;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name u8aFixLength
+ * @summary Shifts a Uint8Array to a specific bitLength
+ * @description
+ * Returns a uint8Array with the specified number of bits contained in the return value. (If bitLength is -1, length checking is not done). Values with more bits are trimmed to the specified length.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aFixLength } from '@polkadot/util';
+ *
+ * u8aFixLength('0x12') // => 0x12
+ * u8aFixLength('0x12', 16) // => 0x0012
+ * u8aFixLength('0x1234', 8) // => 0x12
+ * ```
+ */
+function u8aFixLength(value, bitLength = -1, atStart = false) {
+  const byteLength = Math.ceil(bitLength / 8);
+
+  if (bitLength === -1 || value.length === byteLength) {
+    return value;
+  } else if (value.length > byteLength) {
+    return value.subarray(0, byteLength);
+  }
+
+  const result = new Uint8Array(byteLength);
+
+  if (atStart) {
+    result.set(value, 0);
+  } else {
+    result.set(value, byteLength - value.length);
+  }
+
+  return result;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "u8aConcat", {
+  enumerable: true,
+  get: function () {
+    return _concat.u8aConcat;
+  }
+});
+Object.defineProperty(exports, "u8aEq", {
+  enumerable: true,
+  get: function () {
+    return _eq.u8aEq;
+  }
+});
+Object.defineProperty(exports, "u8aFixLength", {
+  enumerable: true,
+  get: function () {
+    return _fixLength.u8aFixLength;
+  }
+});
+Object.defineProperty(exports, "u8aSorted", {
+  enumerable: true,
+  get: function () {
+    return _sorted.u8aSorted;
+  }
+});
+Object.defineProperty(exports, "u8aToBn", {
+  enumerable: true,
+  get: function () {
+    return _toBn.u8aToBn;
+  }
+});
+Object.defineProperty(exports, "u8aToBuffer", {
+  enumerable: true,
+  get: function () {
+    return _toBuffer.u8aToBuffer;
+  }
+});
+Object.defineProperty(exports, "u8aToHex", {
+  enumerable: true,
+  get: function () {
+    return _toHex.u8aToHex;
+  }
+});
+Object.defineProperty(exports, "u8aToString", {
+  enumerable: true,
+  get: function () {
+    return _toString.u8aToString;
+  }
+});
+Object.defineProperty(exports, "u8aToU8a", {
+  enumerable: true,
+  get: function () {
+    return _toU8a.u8aToU8a;
+  }
+});
+
+var _concat = __webpack_require__(/*! ./concat */ "./node_modules/@polkadot/util/u8a/concat.js");
+
+var _eq = __webpack_require__(/*! ./eq */ "./node_modules/@polkadot/util/u8a/eq.js");
+
+var _fixLength = __webpack_require__(/*! ./fixLength */ "./node_modules/@polkadot/util/u8a/fixLength.js");
+
+var _sorted = __webpack_require__(/*! ./sorted */ "./node_modules/@polkadot/util/u8a/sorted.js");
+
+var _toBn = __webpack_require__(/*! ./toBn */ "./node_modules/@polkadot/util/u8a/toBn.js");
+
+var _toBuffer = __webpack_require__(/*! ./toBuffer */ "./node_modules/@polkadot/util/u8a/toBuffer.js");
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/u8a/toHex.js");
+
+var _toString = __webpack_require__(/*! ./toString */ "./node_modules/@polkadot/util/u8a/toString.js");
+
+var _toU8a = __webpack_require__(/*! ./toU8a */ "./node_modules/@polkadot/util/u8a/toU8a.js");
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/sorted.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/sorted.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aSorted = u8aSorted;
+
+var _undefined = __webpack_require__(/*! ../is/undefined */ "./node_modules/@polkadot/util/is/undefined.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function u8aSorted(u8as) {
+  return u8as.sort((a, b) => {
+    let i = 0;
+
+    while (true) {
+      if ((0, _undefined.isUndefined)(a[i]) && (0, _undefined.isUndefined)(b[i])) {
+        return 0;
+      } else if ((0, _undefined.isUndefined)(a[i])) {
+        return -1;
+      } else if ((0, _undefined.isUndefined)(b[i])) {
+        return 1;
+      }
+
+      const cmp = a[i] - b[i];
+
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      i++;
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/toBn.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/toBn.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aToBn = u8aToBn;
+
+var _toBn = __webpack_require__(/*! ../hex/toBn */ "./node_modules/@polkadot/util/hex/toBn.js");
+
+var _toHex = __webpack_require__(/*! ./toHex */ "./node_modules/@polkadot/util/u8a/toHex.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name u8aToBn
+ * @summary Creates a BN from a Uint8Array object.
+ * @description
+ * `UInt8Array` input values return the actual BN. `null` or `undefined` values returns an `0x0` value.
+ * @param value The value to convert
+ * @param options Options to pass while converting
+ * @param options.isLe Convert using Little Endian
+ * @param options.isNegative Convert using two's complement
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aToBn } from '@polkadot/util';
+ *
+ * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+ * ```
+ */
+function u8aToBn(value, options = {
+  isLe: true,
+  isNegative: false
+}) {
+  return (0, _toBn.hexToBn)((0, _toHex.u8aToHex)(value), options);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/toBuffer.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/toBuffer.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aToBuffer = u8aToBuffer;
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+/**
+ * @name u8aToBuffer
+ * @summary Creates a Buffer object from a hex string.
+ * @description
+ * `null` inputs returns an empty `Buffer` result. `UInt8Array` input values return the actual bytes value converted to a `Buffer`. Anything that is not a `UInt8Array` throws an error.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aToBuffer } from '@polkadot/util';
+ *
+ * console.log('Buffer', u8aToBuffer('0x123480001f'));
+ * ```
+ */
+function u8aToBuffer(value) {
+  return !value ? Buffer.from([]) : Buffer.from(value);
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/toHex.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/toHex.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aToHex = u8aToHex;
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const ALPHABET = new Array(256).fill(0).map((_, n) => n.toString(16).padStart(2, '0'));
+/** @internal */
+
+function extract(value) {
+  const result = new Array(value.length);
+
+  for (let i = 0; i < value.length; i++) {
+    result[i] = ALPHABET[value[i]];
+  }
+
+  return result.join('');
+}
+/** @internal */
+
+
+function trim(value, halfLength) {
+  return `${u8aToHex(value.subarray(0, halfLength), -1, false)}…${u8aToHex(value.subarray(value.length - halfLength), -1, false)}`;
+}
+/**
+ * @name u8aToHex
+ * @summary Creates a hex string from a Uint8Array object.
+ * @description
+ * `UInt8Array` input values return the actual hex string. `null` or `undefined` values returns an `0x` string.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aToHex } from '@polkadot/util';
+ *
+ * u8aToHex(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0xf])); // 0x68656c0f
+ * ```
+ */
+
+
+function u8aToHex(value, bitLength = -1, isPrefixed = true) {
+  const prefix = isPrefixed ? '0x' : '';
+
+  if (!(value === null || value === void 0 ? void 0 : value.length)) {
+    return prefix;
+  }
+
+  const byteLength = Math.ceil(bitLength / 8);
+  return prefix + (byteLength > 0 && value.length > byteLength ? trim(value, Math.ceil(byteLength / 2)) : extract(value));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/toString.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/toString.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aToString = u8aToString;
+
+var _xTextdecoder = _interopRequireDefault(__webpack_require__(/*! @polkadot/x-textdecoder */ "./node_modules/@polkadot/x-textdecoder/browser.js"));
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+const decoder = new _xTextdecoder.default('utf-8');
+/**
+ * @name u8aToString
+ * @summary Creates a utf-8 string from a Uint8Array object.
+ * @description
+ * `UInt8Array` input values return the actual decoded utf-8 string. `null` or `undefined` values returns an empty string.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { u8aToString } from '@polkadot/util';
+ *
+ * u8aToString(new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x6f])); // hello
+ * ```
+ */
+
+function u8aToString(value) {
+  return !(value === null || value === void 0 ? void 0 : value.length) ? '' : decoder.decode(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/util/u8a/toU8a.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@polkadot/util/u8a/toU8a.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.u8aToU8a = u8aToU8a;
+
+var _buffer = __webpack_require__(/*! ../is/buffer */ "./node_modules/@polkadot/util/is/buffer.js");
+
+var _hex = __webpack_require__(/*! ../is/hex */ "./node_modules/@polkadot/util/is/hex.js");
+
+var _string = __webpack_require__(/*! ../is/string */ "./node_modules/@polkadot/util/is/string.js");
+
+var _toU8a = __webpack_require__(/*! ../buffer/toU8a */ "./node_modules/@polkadot/util/buffer/toU8a.js");
+
+var _toU8a2 = __webpack_require__(/*! ../hex/toU8a */ "./node_modules/@polkadot/util/hex/toU8a.js");
+
+var _toU8a3 = __webpack_require__(/*! ../string/toU8a */ "./node_modules/@polkadot/util/string/toU8a.js");
+
+// Copyright 2017-2020 @polkadot/util authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+function convertArray(value) {
+  return Array.isArray(value) ? Uint8Array.from(value) : value;
+}
+
+function convertString(value) {
+  return (0, _hex.isHex)(value) ? (0, _toU8a2.hexToU8a)(value) : (0, _toU8a3.stringToU8a)(value);
+}
+/**
+ * @name u8aToU8a
+ * @summary Creates a Uint8Array value from a Uint8Array, Buffer, string or hex input.
+ * @description
+ * `null` or `undefined` inputs returns a `[]` result, Uint8Array values returns the value, hex strings returns a Uint8Array representation.
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * import { { u8aToU8a } from '@polkadot/util';
+ *
+ * u8aToU8a(new Uint8Array([0x12, 0x34]); // => Uint8Array([0x12, 0x34])
+ * u8aToU8a(0x1234); // => Uint8Array([0x12, 0x34])
+ * ```
+ */
+
+
+function u8aToU8a(value) {
+  if (!value) {
+    return new Uint8Array();
+  } else if ((0, _buffer.isBuffer)(value)) {
+    return (0, _toU8a.bufferToU8a)(value);
+  } else if ((0, _string.isString)(value)) {
+    return convertString(value);
+  }
+
+  return convertArray(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/x-textdecoder/browser.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@polkadot/x-textdecoder/browser.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _fallback = _interopRequireDefault(__webpack_require__(/*! ./fallback */ "./node_modules/@polkadot/x-textdecoder/fallback.js"));
+
+// Copyright 2017-2020 @polkadot/x-textencoder authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+var _default = typeof TextDecoder === 'undefined' ? _fallback.default : TextDecoder;
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/x-textdecoder/fallback.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/x-textdecoder/fallback.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+// Copyright 2017-2020 @polkadot/x-textencoder authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// This is very limited, only handling Ascii values
+class TextDecoder {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-useless-constructor
+  constructor(_) {// nothing
+  }
+
+  decode(value) {
+    return value.reduce((str, code) => {
+      return str + String.fromCharCode(code);
+    }, '');
+  }
+
+}
+
+exports.default = TextDecoder;
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/x-textencoder/browser.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@polkadot/x-textencoder/browser.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _fallback = _interopRequireDefault(__webpack_require__(/*! ./fallback */ "./node_modules/@polkadot/x-textencoder/fallback.js"));
+
+// Copyright 2017-2020 @polkadot/x-textencoder authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+var _default = typeof TextEncoder === 'undefined' ? _fallback.default : TextEncoder;
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@polkadot/x-textencoder/fallback.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@polkadot/x-textencoder/fallback.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+// Copyright 2017-2020 @polkadot/x-textencoder authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+// This is very limited, only handling Ascii values
+class TextEncoder {
+  encode(value) {
+    const u8a = new Uint8Array(value.length);
+
+    for (let i = 0; i < value.length; i++) {
+      u8a[i] = value.charCodeAt(i);
+    }
+
+    return u8a;
+  }
+
+}
+
+exports.default = TextEncoder;
+
+/***/ }),
+
 /***/ "./node_modules/asn1.js/lib/asn1.js":
 /*!******************************************!*\
   !*** ./node_modules/asn1.js/lib/asn1.js ***!
@@ -59863,6 +64801,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @polkadot/extension-dapp */ "./node_modules/@polkadot/extension-dapp/index.js");
 /* harmony import */ var _polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _polkadot_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @polkadot/util */ "./node_modules/@polkadot/util/index.js");
+/* harmony import */ var _polkadot_util__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_polkadot_util__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -59946,9 +64887,61 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
     return handleClick;
   }();
 
-  _proto.handleAccountSelect = function handleAccountSelect() {
-    console.log(this.value);
-  };
+  _proto.handleAccountSelect = /*#__PURE__*/function () {
+    var _handleAccountSelect = Object(_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var address, web3, signer, hexMessage, signed, user;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              address = this.value;
+              _context2.next = 3;
+              return Object(_polkadot_extension_dapp__WEBPACK_IMPORTED_MODULE_6__["web3FromAddress"])(address);
+
+            case 3:
+              web3 = _context2.sent;
+              signer = web3.signer;
+              hexMessage = Object(_polkadot_util__WEBPACK_IMPORTED_MODULE_7__["stringToHex"])("Extreme ownership");
+              _context2.prev = 6;
+              _context2.next = 9;
+              return signer.signRaw({
+                type: "bytes",
+                data: hexMessage,
+                address: address
+              });
+
+            case 9:
+              signed = _context2.sent;
+              console.log(signed);
+              user = app.session.user;
+              user.save({
+                web3address: address
+              }).then(function () {
+                return console.log("Saved");
+              });
+              _context2.next = 19;
+              break;
+
+            case 15:
+              _context2.prev = 15;
+              _context2.t0 = _context2["catch"](6);
+              console.log("Signing rejected");
+              return _context2.abrupt("return");
+
+            case 19:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[6, 15]]);
+    }));
+
+    function handleAccountSelect() {
+      return _handleAccountSelect.apply(this, arguments);
+    }
+
+    return handleAccountSelect;
+  }();
 
   return Web3Dropdown;
 }(flarum_Component__WEBPACK_IMPORTED_MODULE_3___default.a);

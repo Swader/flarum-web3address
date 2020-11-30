@@ -6,7 +6,9 @@ import {
   web3Accounts,
   web3Enable,
   isWeb3Injected,
+  web3FromAddress,
 } from "@polkadot/extension-dapp";
+import { stringToHex } from "@polkadot/util";
 
 export default class Web3Dropdown extends Component {
   oninit() {
@@ -51,7 +53,27 @@ export default class Web3Dropdown extends Component {
     }
   }
 
-  handleAccountSelect() {
-    console.log(this.value);
+  async handleAccountSelect() {
+    const address = this.value;
+    const web3 = await web3FromAddress(address);
+    const signer = web3.signer;
+    const hexMessage = stringToHex("Extreme ownership");
+    try {
+      const signed = await signer.signRaw({
+        type: "bytes",
+        data: hexMessage,
+        address: address,
+      });
+      console.log(signed);
+      const user = app.session.user;
+      user
+        .save({
+          web3address: address,
+        })
+        .then(() => console.log("Saved"));
+    } catch (e) {
+      console.log("Signing rejected");
+      return;
+    }
   }
 }
