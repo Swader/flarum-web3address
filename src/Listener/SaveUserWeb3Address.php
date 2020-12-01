@@ -2,6 +2,7 @@
 
 namespace Swader\Web3Address\Listener;
 
+use Flarum\Foundation\ValidationException;
 use Flarum\User\Event\Saving;
 use Illuminate\Support\Arr;
 
@@ -22,16 +23,15 @@ class SaveUserWeb3Address
                 $actor->assertPermission($canEdit);
             }
 
-            //if (!$actor->isAdmin()) {
-            chdir(__DIR__ . "/../../js");
-            $command = "node src/forum/scripts/verify.js \"Extreme Ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
-            exec($command, $out, $err);
+            if (!$actor->isAdmin()) {
+                chdir(__DIR__ . "/../../js");
+                $command = "node src/forum/scripts/verify.js \"Extreme ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
+                exec($command, $out, $err);
 
-            if ($err) {
-                throw new \Exception("Verification failed: " . is_array($out) ? array_pop($out) : $out);
-                return false;
+                if ($err) {
+                    throw new ValidationException(["Signature could not be verified."]);
+                }
             }
-            //}
             $user->web3address = $attributes['web3address'];
             $user->save();
         }

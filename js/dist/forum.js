@@ -64919,7 +64919,7 @@ var Web3Dropdown = /*#__PURE__*/function (_Component) {
                 web3address: address,
                 signedMessage: signed.signature
               }).then(function () {
-                return console.log("Saved");
+                return m.redraw();
               });
               _context2.next = 19;
               break;

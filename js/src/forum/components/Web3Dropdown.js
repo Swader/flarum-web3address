@@ -72,7 +72,7 @@ export default class Web3Dropdown extends Component {
           web3address: address,
           signedMessage: signed.signature,
         })
-        .then(() => console.log("Saved"));
+        .then(() => m.redraw());
     } catch (e) {
       console.log("Signing rejected");
       return;
