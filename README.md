@@ -6,17 +6,15 @@ A [Flarum](http://flarum.org) extension which lets a user add a Web3 address int
 
 ### Installation
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
+With Composer:
 
 ```sh
 composer require swader/web3address
 ```
 
-### Updating
+### Caveat
 
-```sh
-composer update swader/web3address
-```
+The extension relies on some JS-only crypto functions for server-side verification. This means the server running Flarum should ideally have nodejs and yarn installed, and you should run `yarn install` in the `js` folder of the extension. [@todo - fix this requirement (see issue #1)](https://github.com/Swader/flarum-web3address/issues/1).
 
 ### Links
 
