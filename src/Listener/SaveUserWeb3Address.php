@@ -25,7 +25,11 @@ class SaveUserWeb3Address
 
             if (!$actor->isAdmin()) {
                 chdir(__DIR__ . "/../../js");
-                $command = "node src/forum/scripts/verify.js \"Extreme ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
+                if (app(\Flarum\Foundation\Config::class)->inDebugMode()) {
+                    $command = "node src/forum/scripts/verify.js \"Extreme ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
+                } else {
+                    $command = "node dist/verify.js \"Extreme ownership\" " . $attributes['signedMessage'] . " " . $attributes['web3address'] . " 2>&1";
+                }
                 exec($command, $out, $err);
 
                 if ($err) {
