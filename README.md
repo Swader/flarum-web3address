@@ -21,3 +21,4 @@ composer require swader/web3address
 ## Links
 
 - [Packagist](https://packagist.org/packages/swader/web3address)
+- [Discussion](https://discuss.flarum.org/d/25563-add-web3-address)
